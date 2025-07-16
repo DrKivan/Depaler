@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
+            $table->decimal('monto', 10, 2);
+            $table->string('estado');
+            $table->foreignId('reserva_id')->constrained('reservas')->onDelete('cascade');
+            $table->timestamp('fecha_pago')->nullable();
             $table->timestamps();
         });
     }
