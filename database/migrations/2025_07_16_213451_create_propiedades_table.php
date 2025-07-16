@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('propiedades', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->text('descripcion');
+            $table->string('direccion');
+            $table->decimal('precio_mensual', 10, 2);
+            $table->decimal('precio_dia', 10, 2);
+            $table->integer('num_habitaciones');
+            $table->integer('num_banos'); // Laravel acepta ñ pero se recomienda evitarla en código
+            $table->enum('estado', ['disponible', 'no disponible'])->default('disponible');
+
+            $table->unsignedBigInteger('usuario_id'); // FK al propietario
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

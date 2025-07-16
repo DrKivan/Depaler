@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('email')->unique();
+            $table->string('contraseña'); // recuerda hashearla al guardar
+            $table->string('telefono');
+            $table->enum('tipo_usuario', ['cliente', 'propietario', 'admin'])->default('cliente');
             $table->timestamps();
         });
     }

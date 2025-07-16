@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('imagenes_propiedades', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('propiedad_id');
+            $table->string('ruta'); // o "url" si prefieres ese nombre
+            $table->foreign('propiedad_id')->references('id')->on('propiedades')->onDelete('cascade');
             $table->timestamps();
         });
     }
