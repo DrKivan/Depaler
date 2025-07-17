@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('direccion');
             $table->date('fecha_nacimiento');
-            $table->enum('tipo_usuario', ['cliente', 'propietario', 'moderador'])->default('cliente');
+            $table->enum('tipo_usuario', ['usuario', 'propietario', 'moderador'])->default('usuario');
             $table->timestamps();
         });
     }

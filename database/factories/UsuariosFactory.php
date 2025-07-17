@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class UsuarioFactory extends Factory
+class UsuariosFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -23,7 +23,7 @@ class UsuarioFactory extends Factory
             'telefono' => $this->faker->phoneNumber(),
             'direccion' => $this->faker->address(),
             'fecha_nacimiento' => $this->faker->date(),
-            'rol' => $this->faker->randomElement(['usuario', 'propietario', 'moderador']),
+            'tipo_usuario' => $this->faker->randomElement(['usuario', 'propietario', 'moderador']),
         ];
     }
 }
