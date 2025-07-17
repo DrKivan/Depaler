@@ -17,7 +17,9 @@ class ApelacionesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'motivo' => $this->faker->sentence(),
+            'fecha_apelacion' => $this->faker->dateTime(),
+            'baneo_id' => \App\Models\Baneos::factory(), // Relación con el baneo asociado
         ];
     }
 }
