@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ImagenesPropiedades extends Model
 {
-    //
+    use HasFactory;
+    protected $fillable = [
+        'ruta',
+        'propiedad_id'
+    ];
+
 }
