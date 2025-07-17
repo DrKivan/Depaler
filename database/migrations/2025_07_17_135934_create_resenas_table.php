@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('resenas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('email')->unique();
-            $table->string('contraseña'); // recuerda hashearla al guardar
-            $table->string('telefono');
-            $table->enum('tipo_usuario', ['cliente', 'propietario', 'moderador'])->default('cliente');
+            $table->text('comentario');
+            $table->integer('calificacion'); //Asumiendo que es un número del 1 al 5
+            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
+            $table->foreignId('propiedad_id')->constrained('propiedades')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('resenas');
     }
 };

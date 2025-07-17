@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        Schema::create('baneos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('email')->unique();
-            $table->string('contraseña'); // recuerda hashearla al guardar
-            $table->string('telefono');
-            $table->enum('tipo_usuario', ['cliente', 'propietario', 'moderador'])->default('cliente');
+            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
+            $table->string('motivo');
+            $table->dateTime('fecha_baneo');
+            $table->enum('estado', ['activo', 'revertido'])->default('activo');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('baneos');
     }
 };
