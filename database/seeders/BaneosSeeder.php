@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Baneos;
 
 class BaneosSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class BaneosSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Baneos::factory()->count(10)->create();
     }
 }

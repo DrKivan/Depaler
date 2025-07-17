@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\Apelaciones;
 class ApelacionesSeeder extends Seeder
 {
     /**
@@ -12,6 +12,6 @@ class ApelacionesSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Apelaciones::factory()->count(10)->create();   
     }
 }

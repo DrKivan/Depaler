@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Resena;
 
 class ResenaSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class ResenaSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Resena::factory()->count(10)->create();
     }
 }
