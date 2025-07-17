@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('visitas', function (Blueprint $table) {
             $table->id();
              $table->dateTime('fecha_hora');
-            $table->foreignId('usuario_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
             $table->foreignId('propiedad_id')->constrained('propiedades')->onDelete('cascade');
             $table->string('estado');
             $table->timestamps();
