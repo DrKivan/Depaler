@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('denuncias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('usuario_id');     // usuario denunciado
+            $table->unsignedBigInteger('reportado_id');     // usuario denunciado
             $table->unsignedBigInteger('reportante_id');  // quien denuncia
             $table->string('motivo');
             // Claves foráneas hacia la misma tabla 'usuarios'
-            $table->foreign('usuario_id')
+            $table->foreign('reportado_id')
                   ->references('id')
                   ->on('usuarios')
                   ->onDelete('cascade');
