@@ -17,7 +17,9 @@ class DenunciasFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'motivo' => $this->faker->sentence(),
+            'reportado_id' => \App\Models\Usuarios::factory(), // Relación con el usuario denunciado
+            'reportante_id' => \App\Models\Usuarios::factory(), // Relación con el usuario que reporta
         ];
     }
 }

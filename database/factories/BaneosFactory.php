@@ -17,7 +17,10 @@ class BaneosFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'motivo' => $this->faker->sentence(),
+            'fecha_baneo' => $this->faker->dateTime(),
+            'estado' => $this->faker->randomElement(['activo', 'revertido']),
+            'usuario_id' => \App\Models\Usuarios::factory(), // Relación con el
         ];
     }
 }

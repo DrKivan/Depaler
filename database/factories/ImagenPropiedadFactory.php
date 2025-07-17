@@ -17,7 +17,8 @@ class ImagenPropiedadFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'ruta' => $this->faker->imageUrl(640, 480, 'property', true, 'Faker'),
+            'propiedad_id' => \App\Models\Propiedades::factory(), // Relación
         ];
     }
 }

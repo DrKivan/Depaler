@@ -23,7 +23,7 @@ class UsuarioFactory extends Factory
             'telefono' => $this->faker->phoneNumber(),
             'direccion' => $this->faker->address(),
             'fecha_nacimiento' => $this->faker->date(),
-            'rol' => $this->faker->randomElement(['usuario', 'anfitrion', 'admin']),
+            'rol' => $this->faker->randomElement(['usuario', 'propietario', 'moderador']),
         ];
     }
 }
