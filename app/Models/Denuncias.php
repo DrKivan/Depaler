@@ -2,9 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Denuncias extends Model
 {
-    //
+    use HasFactory;
+
+    protected $fillable = [
+        'motivo',
+        'reportado_id',
+        'reportante_id',
+    ];
+
 }
