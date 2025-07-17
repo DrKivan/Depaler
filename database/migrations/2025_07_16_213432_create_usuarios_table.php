@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('email')->unique();
-            $table->string('contraseña'); // recuerda hashearla al guardar
+            $table->string('contrasena'); // recuerda hashearla al guardar
             $table->string('telefono');
+            $table->string('direccion');
+            $table->date('fecha_nacimiento');
             $table->enum('tipo_usuario', ['cliente', 'propietario', 'moderador'])->default('cliente');
             $table->timestamps();
         });
