@@ -33,5 +33,5 @@ También se han creado:
 
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tuusuario/tu-repo.git
-   cd tu-repo
+   git clone https://github.com/DrKivan/Depaler
+   cd depaler
