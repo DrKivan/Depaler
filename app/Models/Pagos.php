@@ -3,8 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Pagos extends Model
 {
-    //
+    use HasFactory;
+
+    protected $fillable = [
+        'monto',
+        'estado',
+        'reserva_id',
+        'fecha_pago'
+    ];
+
+   
 }
