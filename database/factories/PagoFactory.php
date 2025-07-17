@@ -17,7 +17,10 @@ class PagoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'monto'=>fake()->randomFloat(2, 10, 1000), 
+            'estado'=>fake()->randomElement(['pendiente', 'completado']),
+            'reserva_id'=> \App\Models\Reserva::factory(), 
+            'fecha_pago'=>fake()->dateTimeBetween('now', '+1 month'),
         ];
     }
 }
