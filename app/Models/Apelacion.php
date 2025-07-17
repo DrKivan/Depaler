@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-class Reservas extends Model
+class Apelacion extends Model
 {
     use HasFactory;
-
+    protected $table = 'apelaciones';
     protected $fillable = [
-       'fecha_inicio',
-        'fecha_fin',
-        'usuario_id',
-        'propiedad_id',
-        'estado'
+        'baneo_id',
+        'motivo',
+        'fecha_apelacion'
     ];
 
     

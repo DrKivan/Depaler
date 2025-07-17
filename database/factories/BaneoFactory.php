@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Apelaciones>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Baneos>
  */
-class ApelacionesFactory extends Factory
+class BaneoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,9 @@ class ApelacionesFactory extends Factory
     {
         return [
             'motivo' => $this->faker->sentence(),
-            'fecha_apelacion' => $this->faker->dateTime(),
-            'baneo_id' => \App\Models\Baneos::factory(), // Relación con el baneo asociado
+            'fecha_baneo' => $this->faker->dateTime(),
+            'estado' => $this->faker->randomElement(['activo', 'revertido']),
+            'usuario_id' => \App\Models\Usuario::factory(), // Relación con el
         ];
     }
 }

@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Denuncias extends Model
+class ImagenPropiedad extends Model
 {
     use HasFactory;
-
+    protected $table = 'imagenes_propiedades';
     protected $fillable = [
-        'motivo',
-        'reportado_id',
-        'reportante_id',
+        'ruta',
+        'propiedad_id'
     ];
 
 }

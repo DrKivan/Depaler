@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Denuncias>
  */
-class DenunciasFactory extends Factory
+class DenunciaFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,8 @@ class DenunciasFactory extends Factory
     {
         return [
             'motivo' => $this->faker->sentence(),
-            'reportado_id' => \App\Models\Usuarios::factory(), // Relación con el usuario denunciado
-            'reportante_id' => \App\Models\Usuarios::factory(), // Relación con el usuario que reporta
+            'reportado_id' => \App\Models\Usuario::factory(), // Relación con el usuario denunciado
+            'reportante_id' => \App\Models\Usuario::factory(), // Relación con el usuario que reporta
         ];
     }
 }

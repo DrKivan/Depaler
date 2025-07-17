@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Propiedades extends Model
+class Propiedad extends Model
 {
     use HasFactory;
+    protected $table = 'propiedades';
     protected $fillable = [
         'titulo',
         'descripcion',

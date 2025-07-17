@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class PropiedadesFactory extends Factory
+class PropiedadFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -27,7 +27,7 @@ class PropiedadesFactory extends Factory
             'estado' => $this->faker->randomElement(['disponible', 'no disponible']),
             'aprobada' => false, // Asumiendo que es un booleano para
             // indicar si la propiedad ha sido aprobada por un moderador
-            'usuario_id' => \App\Models\Usuarios::factory(), // Relación con el usuario propietario
+            'usuario_id' => \App\Models\Usuario::factory(), // Relación con el usuario propietario
         ];
     }
 }

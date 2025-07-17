@@ -18,8 +18,8 @@ class VisitaFactory extends Factory
     {
         return [
             'fecha_hora' => fake()->dateTimeBetween('now', '+1 month'), 
-            'usuario_id' => \App\Models\Usuarios::factory(), 
-            'propiedad_id' => \App\Models\Propiedades::factory(), 
+            'usuario_id' => \App\Models\Usuario::factory(), 
+            'propiedad_id' => \App\Models\Propiedad::factory(), 
             'estado' => fake()->randomElement(['pendiente', 'confirmada', 'cancelada']), 
         ];
     }

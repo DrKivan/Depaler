@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Pagos;
+use App\Models\Pago;
 
 class PagoSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class PagoSeeder extends Seeder
      */
     public function run(): void
     {
-        Pagos::factory()->count(10)->create();
+        Pago::factory()->count(10)->create();
     }
 }

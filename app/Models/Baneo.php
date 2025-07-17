@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ImagenesPropiedades extends Model
+class Baneo extends Model
 {
+
     use HasFactory;
+    
     protected $fillable = [
-        'ruta',
-        'propiedad_id'
+        'usuario_id',
+        'fecha_baneo',
+        'motivo',
+        'estado'
     ];
 
 }

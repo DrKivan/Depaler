@@ -4,15 +4,14 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Denuncias;
-
-class DenunciasSeeder extends Seeder
+use App\Models\Apelacion;
+class ApelacionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Denuncias::factory()->count(10)->create();
+        Apelacion::factory()->count(10)->create();
     }
 }
