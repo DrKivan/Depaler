@@ -44,6 +44,34 @@ class AuthController extends Controller
         Session::flush();
         return redirect()->route('login.form');
     }
+    public function vistaRegistro()
+    {
+        return view('auth.registrar');
+    }
+    public function registrarGuardar(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|email|unique:usuarios,email',
+            'contrasena' => 'required|string|min:6|confirmed',
+            'telefono' => 'required|string|max:20',
+            'direccion' => 'required|string|max:255',
+            'fecha_nacimiento' => 'required|date',
+        ]);
+
+       
+        Usuario::create([
+        'nombre' => $request->nombre,
+        'email' => $request->email,
+        'contrasena' => $request->contrasena,
+        'telefono' => $request->telefono,
+        'direccion' => $request->direccion,
+        'fecha_nacimiento' => $request->fecha_nacimiento,
+        'tipo_usuario' => 'usuario', // o puedes dejarlo como $request->tipo_usuario si lo recibes del formulario
+        ]);
+
+        return redirect()->route('login.form')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
+    }
 }
 
 

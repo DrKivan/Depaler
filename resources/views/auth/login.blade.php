@@ -20,5 +20,6 @@
 
         <button type="submit">Iniciar sesión</button>
     </form>
+    <p>¿No tienes una cuenta? <a href="{{ route('registro.form') }}">Regístrate aquí</a></p>
 </body>
 </html>

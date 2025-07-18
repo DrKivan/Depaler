@@ -12,4 +12,10 @@ class PropiedadController extends Controller
         $propiedades = Propiedad::all();
         return view('usuario.listarpropiedad', compact('propiedades'));
     }
+     public function CrearPropiedad(){
+
+        return view('usuario.crearpropiedad');
+
+    }
+
 }
