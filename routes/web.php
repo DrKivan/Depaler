@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\BaneoController;
+use App\Http\Controllers\PropiedadController;
 
 use App\Http\Controllers\AuthController;
 
 Route::get('/',[UsuarioController::class,'index'])->name('usuario.index');
 Route::get('/baneos',[BaneoController::class,'baneo'])->name('baneos');
+
+Route::get('/propiedades',[PropiedadController::class,'ListarPropiedad'])->name('propiedades.listar');
 
 
 
