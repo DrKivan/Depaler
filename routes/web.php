@@ -8,3 +8,4 @@ use App\Http\Controllers\BaneoController;
 Route::get('/',[UsuarioController::class,'index']);
 Route::get('/baneos',[BaneoController::class,'baneo']);
 
+

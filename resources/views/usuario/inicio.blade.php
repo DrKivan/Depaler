@@ -1,3 +1,4 @@
+
 @extends('navegacion.plantillaU')
 
 @section('title', 'Lista de Usuarios')
