@@ -7,6 +7,9 @@
     <div class="bg-white shadow-md rounded-lg overflow-hidden">
         <div class="px-6 py-4 border-b border-gray-200">
             <h1 class="text-2xl font-bold text-gray-900">Lista de Usuarios</h1>
+            <p>Bienvenido, {{ session('usuario_nombre') }}</p>
+            <p>Tu ID es: {{ session('usuario_id') }}</p>
+
         </div>
         
         <div class="overflow-x-auto">
