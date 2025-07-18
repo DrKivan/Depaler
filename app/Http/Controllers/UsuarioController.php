@@ -10,8 +10,5 @@ class UsuarioController extends Controller
         $usuarios = Usuario::all();
         return view('usuario/inicio', compact('usuarios'));
     }
-
-    
-
     
 }

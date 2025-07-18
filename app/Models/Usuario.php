@@ -10,7 +10,7 @@ class Usuario extends Model
     protected $fillable = [
         'nombre',
         'email',
-        'contraseña', // o 'password' si usas el sistema de auth de Laravel
+        'contrasena', // o 'password' si usas el sistema de auth de Laravel
         'telefono',
         'direccion',
         'fecha_nacimiento',
