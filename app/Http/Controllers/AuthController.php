@@ -30,9 +30,9 @@ class AuthController extends Controller
 
         // Redirigir según tipo de usuario
         if ($usuario->tipo_usuario === 'moderador') {
-            return redirect()->route('baneos');
-        } else {
             return redirect()->route('usuario.index'); // lo ajustamos abajo
+        } else {
+            return redirect()->route('propiedades.listar'); // lo ajustamos abajo
         }
     } else {
         return back()->with('error', 'Credenciales incorrectas.');

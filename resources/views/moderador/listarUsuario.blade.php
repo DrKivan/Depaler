@@ -1,5 +1,5 @@
 
-@extends('navegacion.plantillaU')
+@extends('navegacion.plantillaM')
 
 @section('title', 'Lista de Usuarios')
 

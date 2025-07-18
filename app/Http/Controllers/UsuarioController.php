@@ -8,7 +8,7 @@ class UsuarioController extends Controller
 {
     public function Index(){
         $usuarios = Usuario::all();
-        return view('usuario/inicio', compact('usuarios'));
+        return view('moderador/listarUsuario', compact('usuarios'));
     }
     
 }
