@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('num_habitaciones');
             $table->integer('num_banos'); // Laravel acepta ñ pero se recomienda evitarla en código
             $table->enum('estado', ['disponible', 'no disponible'])->default('disponible');
-            $table->boolean('aprobada')->default(false); // Asumiendo que es un booleano para indicar si la propiedad ha sido aprobada por un moderador
+            $table->enum('aprobada', ['pendiente', 'aprobado', 'rechazado'])->default('pendiente');// Asumiendo que es un booleano para indicar si la propiedad ha sido aprobada por un moderador
             $table->unsignedBigInteger('usuario_id'); // FK al propietario
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
 

@@ -60,6 +60,28 @@ class PropiedadController extends Controller
 
     return redirect()->route('propiedades.listar')->with('success', 'Propiedad creada exitosamente.');
 }
+ //Aprobar y rechazar propiedades y listar solicitudes
+    public function aprobar($id)
+    {
+    $propiedad = Propiedad::findOrFail($id);
+    $propiedad->aprobada = 'aprobado'; // Cambiar el estado a aprobado
+    $propiedad->save();
+
+    return redirect()->back()->with('success', 'Propiedad aprobada correctamente.');
+    }
+
+    public function rechazar($id)
+    {
+    $propiedad = Propiedad::findOrFail($id);
+    $propiedad->aprobada = 'rechazado';
+    $propiedad->save();
+
+    return redirect()->back()->with('success', 'Propiedad rechazada correctamente.');
+    }
+    public function VistaSolicitudesPropiedades(){
+        $propiedades = Propiedad::where('aprobada', 'pendiente')->get();
+        return view('moderador/solicitudPropiedad', compact('propiedades'));
+    }
 
 
 

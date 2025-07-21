@@ -17,8 +17,10 @@ Route::get('/propiedades',[PropiedadController::class,'ListarPropiedad'])->name(
 Route::get('/propiedades/crear', [PropiedadController::class, 'CrearPropiedad'])->name('propieadades.crear');
 Route::post('/propiedades/store', [PropiedadController::class, 'StorePropiedad'])->name('propiedades.store');
 
-
-
+//aprobar y rechazar propiedades y listar solicitudes
+Route::get('/moderador/solicitudes', [PropiedadController::class, 'VistaSolicitudesPropiedades'])->name('moderador.solicitudes');
+Route::post('/propiedad/{id}/aprobar', [PropiedadController::class, 'aprobar'])->name('propiedad.aprobar');
+Route::post('/propiedad/{id}/rechazar', [PropiedadController::class, 'rechazar'])->name('propiedad.rechazar');
 
 
 

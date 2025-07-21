@@ -25,7 +25,7 @@ class PropiedadFactory extends Factory
             'num_habitaciones' => $this->faker->numberBetween(1, 5),
             'num_banos' => $this->faker->numberBetween(1, 3),
             'estado' => $this->faker->randomElement(['disponible', 'no disponible']),
-            'aprobada' => false, // Asumiendo que es un booleano para
+            'aprobada' => $this->faker->randomElement(['pendiente', 'aprobado', 'rechazado']),
             // indicar si la propiedad ha sido aprobada por un moderador
             'usuario_id' => \App\Models\Usuario::factory(), // Relación con el usuario propietario
         ];

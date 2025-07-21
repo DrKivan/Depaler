@@ -19,6 +19,7 @@ class Propiedad extends Model
         'num_habitaciones',
         'num_banos',
         'estado',
+        'aprobada',
         'usuario_id',
     ];
     public function imagenes()
