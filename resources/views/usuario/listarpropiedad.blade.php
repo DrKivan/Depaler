@@ -47,14 +47,22 @@
                         <div class="group cursor-pointer" onclick="reservarPropiedad({{ $propiedad->id }})">
                             <!-- Image Placeholder -->
                             <div class="relative aspect-square mb-3 overflow-hidden rounded-xl">
-                                <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                                    <div class="text-center text-gray-400">
-                                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        <p class="text-xs">Imagen no disponible</p>
-                                    </div>
-                                </div>
+                                 @php
+                                        $imagenRuta = $propiedad->imagenes->first()->ruta ?? null;
+                                    @endphp
+
+                                    @if ($imagenRuta)
+                                        <img src="{{ asset($imagenRuta) }}" alt="Imagen propiedad" class="w-full h-full object-cover">
+                                    @else
+                                        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                                            <div class="text-center text-gray-400">
+                                                <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                                                </svg>
+                                                <p class="text-xs">Imagen no disponible</p>
+                                            </div>
+                                        </div>
+                                    @endif
                                 
                                 <!-- Heart Icon -->
                                 <button class="absolute top-3 right-3 p-2 rounded-full bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:scale-110">

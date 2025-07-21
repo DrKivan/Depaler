@@ -11,13 +11,56 @@ class PropiedadController extends Controller
     public function ListarPropiedad()
     {
         $propiedades = Propiedad::all();
-        return view('propietario.listarpropiedad', compact('propiedades'));
+        return view('usuario.listarpropiedad', compact('propiedades'));
     }
      public function CrearPropiedad(){
 
-        return view('usuario.propietario.listarpropiedad');
+        return view('usuario.propietario.crearpropiedad');
 
     }
+   public function StorePropiedad(Request $request)
+{
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'descripcion' => 'required|string',
+        'direccion' => 'required|string',
+        'precio_mensual' => 'nullable|numeric',
+        'precio_dia' => 'nullable|numeric',
+        'num_habitaciones' => 'required|integer',
+        'num_banos' => 'required|integer',
+        'estado' => 'required|string',
+        'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
+
+    $usuarioId = $request->session()->get('usuario_id');
+
+    $propiedad = Propiedad::create([
+        'titulo' => $request->titulo,
+        'descripcion' => $request->descripcion,
+        'direccion' => $request->direccion,
+        'precio_mensual' => $request->precio_mensual,
+        'precio_dia' => $request->precio_dia,
+        'num_habitaciones' => $request->num_habitaciones,
+        'num_banos' => $request->num_banos,
+        'estado' => $request->estado,
+        'usuario_id' => $usuarioId
+    ]);
+
+    if ($request->hasFile('imagenes')) {
+        foreach ($request->file('imagenes') as $imagen) {
+            $nombreArchivo = time().'_'.$imagen->getClientOriginalName();
+            $imagen->move(public_path('imagenes_propiedades'), $nombreArchivo);
+            $ruta = 'imagenes_propiedades/' . $nombreArchivo;
+            ImagenPropiedad::create([
+                'ruta' => $ruta,
+                'propiedad_id' => $propiedad->id,
+            ]);
+        }
+    }
+
+    return redirect()->route('propiedades.listar')->with('success', 'Propiedad creada exitosamente.');
+}
+
 
 
 }

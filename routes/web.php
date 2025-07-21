@@ -14,7 +14,8 @@ Route::get('/baneos',[BaneoController::class,'baneo'])->name('baneos');
 Route::get('/propiedades',[PropiedadController::class,'ListarPropiedad'])->name('propiedades.listar');
 
 
-
+Route::get('/propiedades/crear', [PropiedadController::class, 'CrearPropiedad'])->name('propieadades.crear');
+Route::post('/propiedades/store', [PropiedadController::class, 'StorePropiedad'])->name('propiedades.store');
 
 
 

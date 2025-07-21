@@ -21,4 +21,8 @@ class Propiedad extends Model
         'estado',
         'usuario_id',
     ];
+    public function imagenes()
+{
+    return $this->hasMany(ImagenPropiedad::class);
+}
 }
