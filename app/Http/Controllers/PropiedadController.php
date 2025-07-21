@@ -7,10 +7,12 @@ use App\Models\Propiedad;
 use App\Models\ImagenPropiedad;
 
 class PropiedadController extends Controller
-{
+{   
+    
     public function ListarPropiedad()
     {
-        $propiedades = Propiedad::all();
+        $usuarioId = session('usuario_id');
+        $propiedades = Propiedad::where('estado','=','disponible')->where('aprobada','=','aprobado')->where('usuario_id', '!=', $usuarioId)->get(); ;
         return view('usuario.listarpropiedad', compact('propiedades'));
     }
      public function CrearPropiedad(){
