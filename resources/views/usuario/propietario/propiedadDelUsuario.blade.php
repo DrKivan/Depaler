@@ -69,9 +69,22 @@
                     <!-- Mini-galería de imágenes -->
                     <div class="relative h-52 bg-gray-200">
                         @if($propiedad->imagenes->isNotEmpty())
-                            <img src="{{ $propiedad->imagenes->first()->url ?? 'https://via.placeholder.com/400x250?text=Sin+Imagen' }}"
-                                 alt="{{ $propiedad->titulo }}"
-                                 class="w-full h-full object-cover">
+  <div class="swiper mySwiper-{{ $propiedad->id }}">
+                <div class="swiper-wrapper">
+                    @foreach ($propiedad->imagenes as $imagen)
+                        <div class="swiper-slide">
+                            <img src="{{ asset($imagen->ruta) }}"
+                                 alt="Imagen propiedad"
+                                 class="w-full h-64 object-cover rounded-lg">
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Controles -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
                         @else
                             <div class="w-full h-full flex items-center justify-center text-gray-400">
                                 <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -162,8 +175,26 @@
                         </div>
                     </div>
                 </div>
+
             @endforeach
         </div>
     @endif
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @foreach ($propiedades as $propiedad)
+        new Swiper(".mySwiper-{{ $propiedad->id }}", {
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+        @endforeach
+    });
+</script>
 @endsection
