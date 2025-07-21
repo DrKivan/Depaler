@@ -37,7 +37,7 @@
                         <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Mis Reservas
                         </a>
-                        <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        <a href="{{route('propietario.dashboard')}}" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Publicar tu Propio Espacio
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                 <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                     Mis Reservas
                 </a>
-                <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+                <a href="{{route('propiedad.listarPropiedadUsuario')}}" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
                     Publicar tu Propio Espacio
                 </a>
             </div>
@@ -87,13 +87,21 @@
     </nav>
 
     <!-- Contenido principal -->
-    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Sección de encabezado (opcional) -->
-        @yield('header')
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 flex gap-4">
         
-        <!-- Contenido principal -->
-        <div class="px-4 py-6 sm:px-0">
-            @yield('content')
+        {{-- SIDEBAR opcional --}}
+        @hasSection('sidebar')
+            <aside class="w-64 bg-white p-4 shadow-md rounded-md">
+                @yield('sidebar')
+            </aside>
+        @endif
+
+        {{-- CONTENIDO principal --}}
+        <div class="flex-1">
+            @yield('header')
+            <div class="px-4 py-6 sm:px-0">
+                @yield('content')
+            </div>
         </div>
     </main>
 

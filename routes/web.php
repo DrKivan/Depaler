@@ -44,6 +44,8 @@ Route::get('/usuario/propiedades/crear', [PropiedadController::class, 'CrearProp
 Route::post('/usuario/propiedades/store', [PropiedadController::class, 'StorePropiedad'])->name('propiedades.store');
 
 
+Route::get('/propietario/propiedadUsuario',[PropiedadController::class, 'ListarPropiedadDelUsuario'])->name('propiedad.listarPropiedadUsuario');
+Route::view('/propietario/dashboard', 'usuario.propietario.dashboard')->name('propietario.dashboard');
 
 
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login.form');

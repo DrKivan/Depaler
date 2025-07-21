@@ -88,4 +88,13 @@ class PropiedadController extends Controller
 
 
 
+    public function ListarPropiedadDelUsuario()
+    {
+        $usuarioId = session('usuario_id');
+        $propiedades = Propiedad::where('usuario_id', $usuarioId)->get();
+
+        return view('usuario.propietario.propiedaddelusuario', compact('propiedades'));
+    }
+
+
 }
