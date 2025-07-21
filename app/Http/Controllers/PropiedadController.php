@@ -61,7 +61,7 @@ class PropiedadController extends Controller
         }
     }
 
-    return redirect()->route('propiedades.listar')->with('success', 'Propiedad creada exitosamente.');
+    return redirect()->route('propiedad.listarPropiedadUsuario')->with('success', 'Propiedad creada exitosamente.');
 }
  //Aprobar y rechazar propiedades y listar solicitudes
     public function aprobar($id)
