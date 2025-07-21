@@ -7,7 +7,9 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <!-- SwiperJS CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
     <!-- Estilos adicionales -->
     @stack('styles')
 </head>
@@ -106,7 +108,28 @@
 
     <!-- Scripts adicionales -->
     @stack('scripts')
-    
+    <!-- SwiperJS JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sliders = document.querySelectorAll('.mySwiper');
+        sliders.forEach(function (slider) {
+            new Swiper(slider, {
+                loop: true,
+                pagination: {
+                    el: slider.querySelector('.swiper-pagination'),
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: slider.querySelector('.swiper-button-next'),
+                    prevEl: slider.querySelector('.swiper-button-prev'),
+                },
+            });
+        });
+    });
+</script>
+
     <!-- Script para el menú móvil -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {

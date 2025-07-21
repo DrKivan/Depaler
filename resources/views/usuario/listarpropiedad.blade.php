@@ -44,81 +44,73 @@
             @else
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
                     @foreach ($propiedades as $propiedad)
-                        <div class="group cursor-pointer" onclick="reservarPropiedad({{ $propiedad->id }})">
-                            <!-- Image Placeholder -->
-                            <div class="relative aspect-square mb-3 overflow-hidden rounded-xl">
-                                 @php
-                                        $imagenRuta = $propiedad->imagenes->first()->ruta ?? null;
-                                    @endphp
-
-                                    @if ($imagenRuta)
-                                        <img src="{{ asset($imagenRuta) }}" alt="Imagen propiedad" class="w-full h-full object-cover">
-                                    @else
-                                        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                                            <div class="text-center text-gray-400">
-                                                <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                                                </svg>
-                                                <p class="text-xs">Imagen no disponible</p>
-                                            </div>
-                                        </div>
-                                    @endif
-                                
-                                <!-- Heart Icon -->
-                                <button class="absolute top-3 right-3 p-2 rounded-full bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:scale-110">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 000-6.364 4.5 4.5 0 00-6.364 0L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                    </svg>
-                                </button>
-
-                                <!-- Status Badge -->
-                                @if($propiedad->estado !== 'disponible')
-                                    <div class="absolute top-3 left-3 px-2 py-1 bg-black bg-opacity-75 text-white text-xs rounded-md">
-                                        {{ ucfirst($propiedad->estado) }}
-                                    </div>
-                                @endif
+    <div class="group cursor-default">
+        <!-- Imagen con Swiper Carousel -->
+        <div class="relative aspect-square mb-3 overflow-hidden rounded-xl">
+            @if ($propiedad->imagenes->isNotEmpty())
+                <div class="swiper mySwiper rounded-xl">
+                    <div class="swiper-wrapper">
+                        @foreach ($propiedad->imagenes as $imagen)
+                            <div class="swiper-slide">
+                                <img src="{{ asset($imagen->ruta) }}" alt="Imagen propiedad" class="w-full h-full object-cover">
                             </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            @else
+                <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                    <div class="text-center text-gray-400">
+                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="text-xs">Imagen no disponible</p>
+                    </div>
+                </div>
+            @endif
+        </div>
 
-                            <!-- Listing Info -->
-                            <div class="space-y-1">
-                                <!-- Location and Rating -->
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-sm font-medium text-gray-900 truncate">{{ $propiedad->direccion }}</h3>
-                                    <div class="flex items-center space-x-1 flex-shrink-0 ml-2">
-                                        <svg class="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                        <span class="text-sm text-gray-700">4.8</span>
-                                    </div>
-                                </div>
+        <!-- Info Propiedad -->
+        <div class="space-y-1">
+            <div class="flex items-center justify-between">
+                <h3 class="text-sm font-medium text-gray-900 truncate">{{ $propiedad->direccion }}</h3>
+                <div class="flex items-center space-x-1 flex-shrink-0 ml-2">
+                    <svg class="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <span class="text-sm text-gray-700">4.8</span>
+                </div>
+            </div>
 
-                                <!-- Title -->
-                                <p class="text-sm text-gray-600 line-clamp-1">{{ $propiedad->titulo }}</p>
+            <p class="text-sm text-gray-600 line-clamp-1">{{ $propiedad->titulo }}</p>
 
-                                <!-- Features -->
-                                <p class="text-sm text-gray-600">
-                                    {{ $propiedad->num_habitaciones }} habitación{{ $propiedad->num_habitaciones != 1 ? 'es' : '' }} · 
-                                    {{ $propiedad->num_banos }} baño{{ $propiedad->num_banos != 1 ? 's' : '' }}
-                                </p>
+            <p class="text-sm text-gray-600">
+                {{ $propiedad->num_habitaciones }} habitación{{ $propiedad->num_habitaciones != 1 ? 'es' : '' }} · 
+                {{ $propiedad->num_banos }} baño{{ $propiedad->num_banos != 1 ? 's' : '' }}
+            </p>
 
-                                <!-- Dates -->
-                                <p class="text-sm text-gray-600">Disponible todo el año</p>
+            <p class="text-sm text-gray-600">Disponible todo el año</p>
 
-                                <!-- Price -->
-                                <div class="flex items-baseline space-x-1 pt-1">
-                                    <span class="text-base font-semibold text-gray-900">
-                                        ${{ number_format($propiedad->precio_dia, 0, ',', '.') }}
-                                    </span>
-                                    <span class="text-sm text-gray-600">/ noche</span>
-                                </div>
+            <div class="flex items-baseline space-x-1 pt-1">
+                <span class="text-base font-semibold text-gray-900">${{ number_format($propiedad->precio_dia, 0, ',', '.') }}</span>
+                <span class="text-sm text-gray-600">/ noche</span>
+            </div>
 
-                                <!-- Monthly Price (smaller) -->
-                                <p class="text-xs text-gray-500">
-                                    ${{ number_format($propiedad->precio_mensual, 0, ',', '.') }} / mes
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
+            <p class="text-xs text-gray-500">${{ number_format($propiedad->precio_mensual, 0, ',', '.') }} / mes</p>
+
+            <!-- Botón de Reservar -->
+            <div class="pt-2">
+                <button onclick="reservarPropiedad({{ $propiedad->id }})"
+                    class="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">
+                    Reservar
+                </button>
+            </div>
+        </div>
+    </div>
+@endforeach
+
                 </div>
 
                 <!-- Load More Button (Airbnb style) -->
