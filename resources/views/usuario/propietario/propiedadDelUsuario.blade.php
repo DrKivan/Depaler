@@ -69,9 +69,8 @@
                     <!-- Mini-galería de imágenes -->
                     <div class="relative h-52 bg-gray-200">
                         @if($propiedad->imagenes->isNotEmpty())
-                            <img src="{{ $propiedad->imagenes->first()->url ?? 'https://via.placeholder.com/400x250?text=Sin+Imagen' }}"
-                                 alt="{{ $propiedad->titulo }}"
-                                 class="w-full h-full object-cover">
+                            <img src="{{ asset($propiedad->imagenes->first()->ruta) ?? 'https://via.placeholder.com/400x250?text=Sin+Imagen' }}">
+
                         @else
                             <div class="w-full h-full flex items-center justify-center text-gray-400">
                                 <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
