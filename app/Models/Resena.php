@@ -14,4 +14,9 @@ class Resena extends Model
         'usuario_id',
         'propiedad_id'
     ];
+    public function propiedad()
+{
+    return $this->belongsTo(Propiedad::class);
+}
+
 }

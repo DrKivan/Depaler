@@ -15,6 +15,10 @@ class Reserva extends Model
         'propiedad_id',
         'estado'
     ];
+    public function propiedad()
+{
+    return $this->belongsTo(Propiedad::class);
+}
 
     
 }

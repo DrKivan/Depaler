@@ -102,10 +102,8 @@
 
             <!-- Botón de Reservar -->
             <div class="pt-2">
-                <button onclick="reservarPropiedad({{ $propiedad->id }})"
-                    class="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700">
-                    Reservar
-                </button>
+                 <a href="{{ route('reserva.formulario', ['propiedad_id' => $propiedad->id]) }}">Reservar</a>
+
             </div>
         </div>
     </div>

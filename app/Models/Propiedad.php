@@ -26,4 +26,6 @@ class Propiedad extends Model
 {
     return $this->hasMany(ImagenPropiedad::class);
 }
+
+
 }

@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\BaneoController;
 use App\Http\Controllers\PropiedadController;
-
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\PagoController;
 use App\Http\Controllers\AuthController;
 
 /*Route::get('/',[UsuarioController::class,'index'])->name('usuario.index');
@@ -42,7 +43,7 @@ Route::post('/moderador/propiedad/{id}/rechazar', [PropiedadController::class, '
 Route::get('/usuario/propiedades',[PropiedadController::class,'ListarPropiedad'])->name('propiedades.listar');
 Route::get('/usuario/propiedades/crear', [PropiedadController::class, 'CrearPropiedad'])->name('propieadades.crear');
 Route::post('/usuario/propiedades/store', [PropiedadController::class, 'StorePropiedad'])->name('propiedades.store');
-
+Route::get('/usuario/listarreservas/',[ReservaController::class, 'ListarReserva'])->name('listar.reserva');
 
 Route::get('/propietario/propiedadUsuario',[PropiedadController::class, 'ListarPropiedadDelUsuario'])->name('propiedad.listarPropiedadUsuario');
 Route::view('/propietario/dashboard', 'usuario.propietario.dashboard')->name('propietario.dashboard');
@@ -53,3 +54,12 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/registro', [AuthController::class, 'vistaRegistro'])->name('registro.form');
 Route::post('/registro', [AuthController::class, 'registrarGuardar'])->name('registro.submit');
+
+
+
+Route::post('/usuario/reservar/guardar', [ReservaController::class, 'GuardarReserva'])->name('reserva.guardar');
+Route::get('/usuario/reservar/{propiedad_id}', [ReservaController::class, 'formularioReserva'])->name('reserva.formulario');
+
+// Pago
+Route::get('/usuario/pago/{pago_id}', [PagoController::class, 'formularioPago'])->name('form.pago');
+Route::post('/usuario/pago/{pago_id}/confirmar', [PagoController::class, 'GuardarPago'])->name('pago.confirmar');
