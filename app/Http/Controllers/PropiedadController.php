@@ -43,6 +43,7 @@ class PropiedadController extends Controller
         'num_habitaciones' => $request->num_habitaciones,
         'num_banos' => $request->num_banos,
         'estado' => $request->estado,
+        'aprobada' => 'pendiente', // Estado inicial de la propiedad
         'usuario_id' => $usuarioId
     ]);
 
