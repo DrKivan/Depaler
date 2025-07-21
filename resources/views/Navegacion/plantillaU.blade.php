@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- SwiperJS CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Estilos adicionales -->
     @stack('styles')
