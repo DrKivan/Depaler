@@ -7,6 +7,7 @@ use App\Models\Propiedad;
 use App\Models\ImagenPropiedad;
 use App\Mail\PropiedadNotificacion;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
 
 class PropiedadController extends Controller
 {   
@@ -115,48 +116,72 @@ class PropiedadController extends Controller
 
         return view('usuario.propietario.propiedaddelusuario', compact('propiedades'));
     }
+
+
     public function EditarPropiedadDelUsuario($id)
     {
-        $propiedad = Propiedad::findOrFail($id);
-        if ($propiedad->usuario_id != session('usuario_id')) {
-            return redirect()->back()->with('error', 'No tienes permiso para editar esta propiedad.');
-        }
-         
-        return view('usuario.propietario.editarpropiedad', compact('propiedad'));
+    $propiedad = Propiedad::with('imagenes')->findOrFail($id); // Carga la relación
+
+    if ($propiedad->usuario_id != session('usuario_id')) {
+        return redirect()->back()->with('error', 'No tienes permiso para editar esta propiedad.');
     }
+         
+    return view('usuario.propietario.editarpropiedad', compact('propiedad'));
+    }
+
     public function ActualizarPropiedadDelUsuario(Request $request, $id)
-    {
-        $request->validate([
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'required|string',
-            'direccion' => 'required|string',
-            'precio_mensual' => 'nullable|numeric',
-            'precio_dia' => 'nullable|numeric',
-            'num_habitaciones' => 'required|integer',
-            'num_banos' => 'required|integer',
-            'estado' => 'required|string',
-            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+{
+    $request->validate([
+        'titulo' => 'required|string|max:255',
+        'descripcion' => 'required|string',
+        'direccion' => 'required|string',
+        'precio_mensual' => 'nullable|numeric',
+        'precio_dia' => 'nullable|numeric',
+        'num_habitaciones' => 'required|integer',
+        'num_banos' => 'required|integer',
+        'estado' => 'required|string',
+        'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
 
-        $propiedad = Propiedad::findOrFail($id);
-        if ($propiedad->usuario_id != session('usuario_id')) {
-            return redirect()->back()->with('error', 'No tienes permiso para actualizar esta propiedad.');
-        }
+    $propiedad = Propiedad::findOrFail($id);
+    if ($propiedad->usuario_id != session('usuario_id')) {
+        return redirect()->back()->with('error', 'No tienes permiso para actualizar esta propiedad.');
+    }
 
-        $propiedad->update($request->all());
-
-        if ($request->hasFile('imagenes')) {
-            foreach ($request->file('imagenes') as $imagen) {
-                $nombreArchivo = time().'_'.$imagen->getClientOriginalName();
-                $imagen->move(public_path('imagenes_propiedades'), $nombreArchivo);
-                $ruta = 'imagenes_propiedades/' . $nombreArchivo;
-                ImagenPropiedad::create([
-                    'ruta' => $ruta,
-                    'propiedad_id' => $propiedad->id,
-                ]);
+    // ✅ Eliminar imágenes seleccionadas
+    if ($request->filled('eliminar_imagenes')) {
+        foreach ($request->eliminar_imagenes as $idImagen) {
+            $imagen = ImagenPropiedad::find($idImagen);
+            if ($imagen && $imagen->propiedad_id == $propiedad->id) {
+                // Eliminar archivo físico
+                if (File::exists(public_path($imagen->ruta))) {
+                    File::delete(public_path($imagen->ruta));
+                }
+                // Eliminar registro
+                $imagen->delete();
             }
         }
-
-        return redirect()->route('propiedad.listarPropiedadUsuario')->with('success', 'Propiedad actualizada exitosamente.');
     }
+
+    // ✅ Actualizar datos de la propiedad
+    $propiedad->update($request->only([
+        'titulo', 'descripcion', 'direccion', 'precio_mensual',
+        'precio_dia', 'num_habitaciones', 'num_banos', 'estado'
+    ]));
+
+    // ✅ Subir nuevas imágenes (si hay)
+    if ($request->hasFile('imagenes')) {
+        foreach ($request->file('imagenes') as $imagen) {
+            $nombreArchivo = time().'_'.$imagen->getClientOriginalName();
+            $imagen->move(public_path('imagenes_propiedades'), $nombreArchivo);
+            $ruta = 'imagenes_propiedades/' . $nombreArchivo;
+            ImagenPropiedad::create([
+                'ruta' => $ruta,
+                'propiedad_id' => $propiedad->id,
+            ]);
+        }
+    }
+
+    return redirect()->route('propiedad.listarPropiedadUsuario')->with('success', 'Propiedad actualizada exitosamente.');
+}
 }
