@@ -18,7 +18,7 @@
         </ul>
     @endif
 
-    <form method="POST" action="{{ route('registro.submit') }}">
+    <form method="POST" action="{{ route('registro.submit') }}" enctype="multipart/form-data">
         @csrf
 
         <label>Nombre:</label>
@@ -41,6 +41,8 @@
 
         <label>Fecha de nacimiento:</label>
         <input type="date" name="fecha_nacimiento" required><br><br>
+        <label>Foto de perfil:</label>
+        <input type="file" name="foto_perfil" accept="image/*" ><br><br>
 
         <button type="submit">Registrar</button>
     </form>

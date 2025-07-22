@@ -24,6 +24,7 @@ class UsuarioFactory extends Factory
             'direccion' => $this->faker->address(),
             'fecha_nacimiento' => $this->faker->date(),
             'tipo_usuario' => $this->faker->randomElement(['usuario', 'propietario', 'moderador']),
+            'foto_perfil' => $this->faker->imageUrl(640, 480, 'people', true), // Genera una URL de imagen aleatoria
         ];
     }
 }

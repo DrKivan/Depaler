@@ -17,7 +17,8 @@ class Usuario extends Model
         'telefono',
         'direccion',
         'fecha_nacimiento',
-        'tipo_usuario'
+        'tipo_usuario',
+        'foto_perfil' // Ruta de la foto de perfil
     ];
 
     protected $hidden = [

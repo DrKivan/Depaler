@@ -50,30 +50,41 @@ class AuthController extends Controller
     {
         return view('auth.registrar');
     }
-    public function registrarGuardar(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'email' => 'required|email|unique:usuarios,email',
-            'contrasena' => 'required|string|min:6|confirmed',
-            'telefono' => 'required|string|max:20',
-            'direccion' => 'required|string|max:255',
-            'fecha_nacimiento' => 'required|date',
-        ]);
+   public function registrarGuardar(Request $request)
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'email' => 'required|email|unique:usuarios,email',
+        'contrasena' => 'required|string|min:6|confirmed',
+        'telefono' => 'required|string|max:20',
+        'direccion' => 'required|string|max:255',
+        'fecha_nacimiento' => 'required|date',
+        'foto_perfil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
 
-       
-        Usuario::create([
+    $rutaFoto = null;
+
+    if ($request->hasFile('foto_perfil')) {
+        $archivo = $request->file('foto_perfil');
+        $nombreArchivo = time().'_'.$archivo->getClientOriginalName();
+        $archivo->move(public_path('fotos_perfil'), $nombreArchivo);
+        $rutaFoto = 'fotos_perfil/' . $nombreArchivo; // Ruta que se guarda en la base de datos
+    }
+
+    Usuario::create([
         'nombre' => $request->nombre,
         'email' => $request->email,
         'contrasena' => $request->contrasena,
         'telefono' => $request->telefono,
         'direccion' => $request->direccion,
         'fecha_nacimiento' => $request->fecha_nacimiento,
-        'tipo_usuario' => 'usuario', // o puedes dejarlo como $request->tipo_usuario si lo recibes del formulario
-        ]);
+        'tipo_usuario' => 'usuario',
+        'foto_perfil' => $rutaFoto, // Se guarda null si no se subió imagen
+    ]);
 
-        return redirect()->route('login.form')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
-    }
+    return redirect()->route('login.form')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
+}
+    
 }
 
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->date('fecha_nacimiento');
             $table->enum('tipo_usuario', ['usuario', 'propietario', 'moderador'])->default('usuario');
+            $table->string('foto_perfil')->nullable(); // Ruta de la foto de perfil
             $table->timestamps();
         });
     }
