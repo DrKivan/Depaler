@@ -11,15 +11,17 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservaController extends Controller
 {
-    public function ListarReserva(Request $request){
-        $usuarioId = $request->session()->get('usuario_id');
+   public function ListarReserva(Request $request)
+{
+    $usuarioId = $request->session()->get('usuario_id');
 
-        $reservas=Reserva::with('propiedad')
+    $reservas = Reserva::with(['propiedad', 'pago'])
                 ->where('usuario_id', $usuarioId)
                 ->get();
 
-        return view('usuario.listarreserva', compact('reservas'));
-    }
+    return view('usuario.listarreserva', compact('reservas'));
+}
+
     /*public function GuardarReserva(Request $request)
     {
     $request->validate([
@@ -153,6 +155,7 @@ class ReservaController extends Controller
             'reserva_id' => $reserva->id,
             'monto' => $request->monto,
             'estado' => 'completado',
+            'fecha_pago' => now(),
         ]);
 
         return redirect()->route('propiedades.listar')->with('success', 'Reserva y pago registrados correctamente.');

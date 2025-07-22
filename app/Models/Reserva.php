@@ -20,5 +20,11 @@ class Reserva extends Model
     return $this->belongsTo(Propiedad::class);
 }
 
+public function pago()
+{
+    return $this->hasOne(Pago::class);
+}
+
+
     
 }
