@@ -27,7 +27,9 @@ class AuthController extends Controller
         Session::put('usuario_id', $usuario->id);
         Session::put('usuario_nombre', $usuario->nombre);
         Session::put('tipo_usuario', $usuario->tipo_usuario);
-
+        Session::put('email', $usuario->email);
+        Session::put('telefono', $usuario->telefono);
+        Session::put('direccion', $usuario->direccion);
         // Redirigir según tipo de usuario
         if ($usuario->tipo_usuario === 'moderador') {
             return redirect()->route('usuario.index'); // lo ajustamos abajo
