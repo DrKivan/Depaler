@@ -74,8 +74,8 @@
             <select name="estado" id="estado" class="w-full border border-gray-300 p-2 rounded" required>
                 <option value="">Seleccione un estado</option>
                 <option value="disponible" {{ old('estado', $propiedad->estado) == 'disponible' ? 'selected' : '' }}>Disponible</option>
-                <option value="ocupado" {{ old('estado', $propiedad->estado) == 'ocupado' ? 'selected' : '' }}>Ocupado</option>
-                <option value="inactivo" {{ old('estado', $propiedad->estado) == 'inactivo' ? 'selected' : '' }}>Inactivo</option>
+                <option value="no disponible" {{ old('estado', $propiedad->estado) == 'no disponible' ? 'selected' : '' }}>No Disponible</option>
+
             </select>
             @error('estado')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -85,6 +85,24 @@
         <!-- Sección mejorada de imágenes -->
         <div class="mb-6">
             <label for="imagenes" class="block font-semibold">Imágenes</label>
+            @if($propiedad->imagenes->count())
+    <div class="mb-6">
+        <label class="block font-semibold mb-2">Imágenes actuales</label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            @foreach($propiedad->imagenes as $imagen)
+                <div class="relative group border rounded-lg overflow-hidden">
+                    <img src="{{ asset($imagen->ruta) }}" class="w-full h-24 object-cover" alt="Imagen propiedad">
+
+                    <label class="absolute top-1 right-1 bg-white px-2 py-1 text-xs rounded shadow">
+                        <input type="checkbox" name="eliminar_imagenes[]" value="{{ $imagen->id }}">
+                        Eliminar
+                    </label>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endif
+
             <input type="file" name="imagenes[]" id="imagenes" multiple accept="image/*" class="w-full border border-gray-300 p-2 rounded" onchange="previewImages(this)">
             <p class="text-sm text-gray-600 mt-2">Selecciona múltiples imágenes para mostrar mejor tu propiedad. La primera imagen será la imagen principal.</p>
             @error('imagenes')
