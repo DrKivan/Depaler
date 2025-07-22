@@ -70,6 +70,20 @@
         </ul>
     </div>
 </div>
+<div class="flex justify-between mt-6 space-x-4">
+    <button
+        onclick="abrirModal('propiedad')"
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow">
+        Denunciar propiedad
+    </button>
+
+    <button
+        onclick="abrirModal('usuario')"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded shadow">
+        Denunciar ofertante
+    </button>
+</div>
+
 </div>
 
 
@@ -118,4 +132,58 @@
         }
     });
 </script>
+
+
+
+
+
+{{-- Modal de Denuncia --}}
+<div id="modalDenuncia" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="bg-white w-full max-w-md p-6 rounded-lg shadow-lg relative">
+        <button onclick="cerrarModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">&times;</button>
+        
+        <h2 class="text-xl font-semibold mb-4">Enviar denuncia</h2>
+
+        <form action="{{ route('denuncias.store') }}" method="POST">
+            @csrf
+
+            {{-- Campo oculto para reportado o propiedad --}}
+            <input type="hidden" id="inputReportado" name="reportado_id">
+            <input type="hidden" id="inputPropiedad" name="propiedad_id">
+
+            <div class="mb-4">
+                <label for="motivo" class="block text-sm font-medium text-gray-700">Motivo:</label>
+                <textarea name="motivo" id="motivo" required rows="3"
+                    class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded">
+                Enviar denuncia
+            </button>
+        </form>
+    </div>
+</div>
+<script>
+    function abrirModal(tipo) {
+        const modal = document.getElementById('modalDenuncia');
+        const inputPropiedad = document.getElementById('inputPropiedad');
+        const inputReportado = document.getElementById('inputReportado');
+
+        if (tipo === 'propiedad') {
+            inputPropiedad.value = '{{ $propiedad->id }}';
+            inputReportado.value = '{{ $propiedad->usuario->id }}'; // Opcional
+        } else if (tipo === 'usuario') {
+            inputPropiedad.value = '';
+            inputReportado.value = '{{ $propiedad->usuario->id }}';
+        }
+
+        modal.classList.remove('hidden');
+    }
+
+    function cerrarModal() {
+        document.getElementById('modalDenuncia').classList.add('hidden');
+    }
+</script>
+
 @endsection

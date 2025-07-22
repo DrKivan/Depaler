@@ -8,6 +8,7 @@ use App\Http\Controllers\PropiedadController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DenunciaController;
 
 /*Route::get('/',[UsuarioController::class,'index'])->name('usuario.index');
 Route::get('/baneos',[BaneoController::class,'baneo'])->name('baneos');
@@ -72,3 +73,5 @@ Route::post('/reserva/guardar', [ReservaController::class, 'guardar'])->name('re
 Route::get('/propietario/editarPropiedad/{id}', [PropiedadController::class, 'EditarPropiedadDelUsuario'])->name('propietario.editarPropiedad');
 Route::post('/propietario/actualizarPropiedad/{id}', [PropiedadController::class, 'ActualizarPropiedadDelUsuario'])->name('propietario.actualizarPropiedad');
 
+
+Route::post('/denuncias/guardar', [DenunciaController::class, 'store'])->name('denuncias.store');
