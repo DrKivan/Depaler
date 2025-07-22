@@ -69,3 +69,6 @@ Route::get('/usuario/pago/{pago_id}', [PagoController::class, 'formularioPago'])
 Route::post('/reserva/resumen', [ReservaController::class, 'resumen'])->name('reserva.resumen');
 Route::post('/reserva/guardar', [ReservaController::class, 'guardar'])->name('reserva.guardar');
 
+Route::get('/propietario/editarPropiedad/{id}', [PropiedadController::class, 'EditarPropiedadDelUsuario'])->name('propietario.editarPropiedad');
+Route::post('/propietario/actualizarPropiedad/{id}', [PropiedadController::class, 'ActualizarPropiedadDelUsuario'])->name('propietario.actualizarPropiedad');
+
