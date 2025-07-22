@@ -44,13 +44,32 @@
     <div class="bg-white rounded-lg shadow p-6 mb-8">
     <h3 class="text-xl font-semibold mb-4">Información del ofertante</h3>
 
-    <ul class="space-y-1 text-gray-700">
-        <li><strong>Nombre:</strong> {{ $propiedad->usuario->nombre ?? 'No disponible' }}</li>
-        <li><strong>Dirección:</strong> {{ $propiedad->usuario->direccion ?? 'No disponible' }}</li>
-        <li><strong>Teléfono:</strong> {{ $propiedad->usuario->telefono ?? 'No disponible' }}</li>
-        <li><strong>Email:</strong> {{ $propiedad->usuario->email ?? 'No disponible' }}</li>
-        <li class="text-sm text-gray-400"><strong>ID de usuario (oculta):</strong> {{ $propiedad->usuario->id ?? 'N/A' }}</li>
-    </ul>
+    
+   
+{{-- Información del ofertante --}}
+<div class="bg-white rounded-lg shadow p-6 mb-8 flex items-center space-x-6">
+    
+    {{-- Foto de perfil --}}
+    <div class="w-24 h-24 rounded-full overflow-hidden border border-gray-300 shadow">
+        @if (!empty($propiedad->usuario->foto_perfil))
+            <img src="{{ asset('/' . $propiedad->usuario->foto_perfil) }}" alt="Foto de perfil" class="w-full h-full object-cover">
+        @else
+            <img src="{{ asset('fotos_perfil/default.png') }}" alt="Foto por defecto" class="w-full h-full object-cover">
+        @endif
+    </div>
+
+    {{-- Datos del ofertante --}}
+    <div>
+        <h3 class="text-xl font-semibold mb-2">Información del ofertante</h3>
+        <ul class="space-y-1 text-gray-700">
+            <li><strong>Nombre:</strong> {{ $propiedad->usuario->nombre ?? 'No disponible' }}</li>
+            <li><strong>Dirección:</strong> {{ $propiedad->usuario->direccion ?? 'No disponible' }}</li>
+            <li><strong>Teléfono:</strong> {{ $propiedad->usuario->telefono ?? 'No disponible' }}</li>
+            <li><strong>Email:</strong> {{ $propiedad->usuario->email ?? 'No disponible' }}</li>
+            <li class="text-sm text-gray-400"><strong>ID usuario:</strong> {{ $propiedad->usuario->id ?? 'N/A' }}</li>
+        </ul>
+    </div>
+</div>
 </div>
 
 

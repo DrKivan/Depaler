@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('reportado_id');     // usuario denunciado
             $table->unsignedBigInteger('reportante_id');  // quien denuncia
-            $table->unsignedBigInteger('propiedad_id'); // id propiedad
-            $table->string('motivo');
+            $table->unsignedBigInteger('propiedad_id')->nullable(); // propiedad puede ser null
+                $table->string('motivo');
             // Claves foráneas hacia la misma tabla 'usuarios'
             $table->foreign('reportado_id')
                   ->references('id')
