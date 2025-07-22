@@ -161,4 +161,18 @@ class ReservaController extends Controller
         return redirect()->route('propiedades.listar')->with('success', 'Reserva y pago registrados correctamente.');
     }
 
+    //listar solicitudes de reserva
+    public function VistaSolicitudesReserva(Request $request){
+    $usuarioId = $request->session()->get('usuario_id');
+
+    $reservas = Reserva::with(['propiedad', 'pago'])
+        ->whereHas('propiedad', function($query) use ($usuarioId) {
+            $query->where('usuario_id', $usuarioId);
+        })
+        ->where('estado', 'pendiente')
+        ->get();
+
+    return view('usuario.propietario.solicitudreserva', compact('reservas'));
+}
+
 }

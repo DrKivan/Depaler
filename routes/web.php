@@ -73,5 +73,5 @@ Route::post('/reserva/guardar', [ReservaController::class, 'guardar'])->name('re
 Route::get('/propietario/editarPropiedad/{id}', [PropiedadController::class, 'EditarPropiedadDelUsuario'])->name('propietario.editarPropiedad');
 Route::post('/propietario/actualizarPropiedad/{id}', [PropiedadController::class, 'ActualizarPropiedadDelUsuario'])->name('propietario.actualizarPropiedad');
 
-
+Route::get('/propietario/solicitudesReserva', [ReservaController::class, 'VistaSolicitudesReserva'])->name('propietario.solicitudes');
 Route::post('/denuncias/guardar', [DenunciaController::class, 'store'])->name('denuncias.store');
