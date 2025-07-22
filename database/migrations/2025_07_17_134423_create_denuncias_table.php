@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('denuncias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reportado_id');     // usuario denunciado
+            $table->unsignedBigInteger('reportado_id')->nullable();     // usuario denunciado
             $table->unsignedBigInteger('reportante_id');  // quien denuncia
             $table->unsignedBigInteger('propiedad_id')->nullable(); // propiedad puede ser null
                 $table->string('motivo');
