@@ -57,9 +57,15 @@ Route::post('/registro', [AuthController::class, 'registrarGuardar'])->name('reg
 
 
 
-Route::post('/usuario/reservar/guardar', [ReservaController::class, 'GuardarReserva'])->name('reserva.guardar');
+//Route::post('/usuario/reservar/guardar', [ReservaController::class, 'GuardarReserva'])->name('reserva.guardar');
 Route::get('/usuario/reservar/{propiedad_id}', [ReservaController::class, 'formularioReserva'])->name('reserva.formulario');
 
 // Pago
 Route::get('/usuario/pago/{pago_id}', [PagoController::class, 'formularioPago'])->name('form.pago');
-Route::post('/usuario/pago/{pago_id}/confirmar', [PagoController::class, 'GuardarPago'])->name('pago.confirmar');
+//Route::post('/usuario/reserva/confirmar', [ReservaController::class, 'confirmarReserva'])->name('reserva.confirmar');
+//Route::post('/usuario/reserva/guardar', [ReservaController::class, 'GuardarReserva'])->name('reserva.guardar');
+
+
+Route::post('/reserva/resumen', [ReservaController::class, 'resumen'])->name('reserva.resumen');
+Route::post('/reserva/guardar', [ReservaController::class, 'guardar'])->name('reserva.guardar');
+

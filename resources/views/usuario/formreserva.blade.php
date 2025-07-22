@@ -6,7 +6,7 @@
 <div class="max-w-2xl mx-auto py-10 px-4">
     <h2 class="text-2xl font-semibold mb-6">Reservar: {{ $propiedad->titulo }}</h2>
 
-    <form action="{{ route('reserva.guardar') }}" method="POST" class="space-y-4 bg-white p-6 rounded-lg shadow">
+    <form action="{{ route('reserva.resumen') }}" method="POST" class="space-y-4 bg-white p-6 rounded-lg shadow">
         @csrf
 
         <input type="hidden" name="propiedad_id" value="{{ $propiedad->id }}">
