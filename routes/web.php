@@ -9,6 +9,7 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DenunciaController;
+use App\Http\Controllers\ResenaController;
 
 /*Route::get('/',[UsuarioController::class,'index'])->name('usuario.index');
 Route::get('/baneos',[BaneoController::class,'baneo'])->name('baneos');
@@ -75,3 +76,7 @@ Route::post('/propietario/actualizarPropiedad/{id}', [PropiedadController::class
 
 
 Route::post('/denuncias/guardar', [DenunciaController::class, 'store'])->name('denuncias.store');
+
+
+
+Route::post('/resenas', [ResenaController::class, 'store'])->name('resenas.store');

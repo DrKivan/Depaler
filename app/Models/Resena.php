@@ -9,7 +9,7 @@ class Resena extends Model
     use HasFactory;
 
     protected $fillable = [
-        'contenido',
+        'comentario',
         'calificacion',
         'usuario_id',
         'propiedad_id'
