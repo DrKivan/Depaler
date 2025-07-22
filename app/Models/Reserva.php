@@ -25,6 +25,11 @@ public function pago()
     return $this->hasOne(Pago::class);
 }
 
+// En modelo Reserva.php
+public function resena()
+{
+    return $this->hasOne(Resena::class);
+}
 
     
 }
