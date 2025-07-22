@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Propiedad;
 use App\Models\ImagenPropiedad;
+use App\Mail\PropiedadNotificacion;
+use Illuminate\Support\Facades\Mail;
 
 class PropiedadController extends Controller
 {   
@@ -63,30 +65,48 @@ class PropiedadController extends Controller
 
     return redirect()->route('propiedad.listarPropiedadUsuario')->with('success', 'Propiedad creada exitosamente.');
 }
- //Aprobar y rechazar propiedades y listar solicitudes
+
+    //Aprobar y rechazar propiedades y listar solicitudes
     public function aprobar($id)
     {
-    $propiedad = Propiedad::findOrFail($id);
-    $propiedad->aprobada = 'aprobado'; // Cambiar el estado a aprobado
-    $propiedad->save();
+        try {
+            $propiedad = Propiedad::with('usuario')->findOrFail($id);
+            $propiedad->aprobada = 'aprobado';
+            $propiedad->save();
 
-    return redirect()->back()->with('success', 'Propiedad aprobada correctamente.');
+            // Enviar correo de notificación
+            if ($propiedad->usuario && $propiedad->usuario->email) {
+                Mail::to($propiedad->usuario->email)->send(new PropiedadNotificacion($propiedad, 'aprobado'));
+            }
+
+            return redirect()->back()->with('success', 'Propiedad aprobada correctamente y notificación enviada.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al aprobar la propiedad: ' . $e->getMessage());
+        }
     }
 
     public function rechazar($id)
     {
-    $propiedad = Propiedad::findOrFail($id);
-    $propiedad->aprobada = 'rechazado';
-    $propiedad->save();
+        try {
+            $propiedad = Propiedad::with('usuario')->findOrFail($id);
+            $propiedad->aprobada = 'rechazado';
+            $propiedad->save();
 
-    return redirect()->back()->with('success', 'Propiedad rechazada correctamente.');
+            // Enviar correo de notificación
+            if ($propiedad->usuario && $propiedad->usuario->email) {
+                Mail::to($propiedad->usuario->email)->send(new PropiedadNotificacion($propiedad, 'rechazado'));
+            }
+
+            return redirect()->back()->with('success', 'Propiedad rechazada correctamente y notificación enviada.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al rechazar la propiedad: ' . $e->getMessage());
+        }
     }
+
     public function VistaSolicitudesPropiedades(){
         $propiedades = Propiedad::where('aprobada', 'pendiente')->get();
         return view('moderador/solicitudPropiedad', compact('propiedades'));
     }
-
-
 
     public function ListarPropiedadDelUsuario()
     {
@@ -95,6 +115,4 @@ class PropiedadController extends Controller
 
         return view('usuario.propietario.propiedaddelusuario', compact('propiedades'));
     }
-
-
 }

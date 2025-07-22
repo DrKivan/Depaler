@@ -26,6 +26,10 @@ class Propiedad extends Model
 {
     return $this->hasMany(ImagenPropiedad::class);
 }
-
+// Agregar esta relación
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
 
 }
