@@ -20,6 +20,7 @@ class DenunciaFactory extends Factory
             'motivo' => $this->faker->sentence(),
             'reportado_id' => \App\Models\Usuario::factory(), // Relación con el usuario denunciado
             'reportante_id' => \App\Models\Usuario::factory(), // Relación con el usuario que reporta
+            'propiedad_id' => \App\Models\Propiedad::factory(), // Relación con la propiedad denunciada
         ];
     }
 }

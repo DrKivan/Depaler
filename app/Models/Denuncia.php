@@ -13,6 +13,7 @@ class Denuncia extends Model
         'motivo',
         'reportado_id',
         'reportante_id',
+        'propiedad_id',
     ];
 
 }

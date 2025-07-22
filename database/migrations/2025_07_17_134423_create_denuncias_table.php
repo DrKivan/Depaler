@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('reportado_id');     // usuario denunciado
             $table->unsignedBigInteger('reportante_id');  // quien denuncia
+            $table->unsignedBigInteger('propiedad_id'); // id propiedad
             $table->string('motivo');
             // Claves foráneas hacia la misma tabla 'usuarios'
             $table->foreign('reportado_id')
@@ -24,6 +25,10 @@ return new class extends Migration
             $table->foreign('reportante_id')
                   ->references('id')
                   ->on('usuarios')
+                  ->onDelete('cascade');
+            $table->foreign('propiedad_id')
+                  ->references('id')
+                  ->on('propiedades')
                   ->onDelete('cascade');
             $table->timestamps();
         });
