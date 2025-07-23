@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('usuario_id')->constrained('usuarios')->onDelete('cascade');
             $table->string('motivo');
             $table->dateTime('fecha_baneo');
-            $table->enum('estado', ['activo', 'revertido'])->default('activo');
+            $table->enum('estado', ['temporal', 'permanente']);
             $table->timestamps();
         });
     }

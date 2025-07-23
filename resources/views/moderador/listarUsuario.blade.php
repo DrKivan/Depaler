@@ -150,8 +150,8 @@
                     <div class="mb-4">
                         <label for="estado" class="block text-sm font-medium text-gray-700">Estado</label>
                         <select name="estado" id="estado" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            <option value="activo">Activo</option>
-                            <option value="revertido">Revertido</option>
+                            <option value="temporal">Temporal</option>
+                            <option value="permanente">Permanente</option>
                         </select>
                     </div>
                     

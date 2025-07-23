@@ -13,7 +13,7 @@ class BaneoController extends Controller
     $request->validate([
         'motivo' => 'required|string|max:255',
         'fecha_baneo' => 'required|date',
-        'estado' => 'required|in:activo,revertido'
+        'estado' => 'required|in:temporal,permanente'
     ]);
     
     // Actualizar estado del usuario
