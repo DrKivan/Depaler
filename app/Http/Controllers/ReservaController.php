@@ -162,8 +162,8 @@ class ReservaController extends Controller
     }
 
     //listar solicitudes de reserva
-    public function VistaSolicitudesReserva(Request $request){
-    $usuarioId = $request->session()->get('usuario_id');
+    public function VistaSolicitudesReserva(){
+    $usuarioId = session('usuario_id');
 
     $reservas = Reserva::with(['propiedad', 'pago'])
         ->whereHas('propiedad', function($query) use ($usuarioId) {
