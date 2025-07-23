@@ -61,21 +61,29 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                @if($usuario->denuncias_recibidas_count >= 3)
-                                    <div class="flex space-x-2">
-                                        
-                                            <button onclick="mostrarModalBanear({{ $usuario->id }})"
-        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs">
-        Banear
-    </button>
-                                        <button onclick="mostrarDenuncias({{ $usuario->id }})"
-                                            class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-3 rounded text-xs">
-                                            Revisar
-                                        </button>
-                                    </div>
-                                @else
-                                    <span class="text-gray-400 text-xs">Requiere 3+ denuncias</span>
-                                @endif
+                               @if($usuario->denuncias_recibidas_count >= 3)
+    <div class="flex space-x-2">
+        @if($usuario->baneado)
+            <button onclick="desbanearUsuario({{ $usuario->id }})"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-xs"
+                title="Desbanear usuario y eliminar registro de baneo">
+                <i class="fas fa-user-check mr-1"></i> Desbanear
+            </button>
+        @else
+            <button onclick="mostrarModalBanear({{ $usuario->id }})"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs"
+                title="Banear usuario">
+                <i class="fas fa-user-slash mr-1"></i> Banear
+            </button>
+        @endif
+        
+        <button onclick="mostrarDenuncias({{ $usuario->id }})"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-xs"
+            title="Ver denuncias">
+            <i class="fas fa-eye mr-1"></i> Revisar
+        </button>
+    </div>
+@endif
                             </td>
                         </tr>
                         <tr id="denuncias-{{ $usuario->id }}" class="hidden bg-gray-50">
@@ -169,6 +177,68 @@
     </div>
 </div>
 <script>
+    function desbanearUsuario(usuarioId) {
+    if (!confirm('¿Estás seguro de desbanear a este usuario?\nSe eliminarán todos los registros de baneo asociados.')) {
+        return;
+    }
+    
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    
+    fetch(`/moderador/desbanear/${usuarioId}`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(err => { throw err; });
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            // Mostrar notificación de éxito
+            alertify.success(data.message);
+            
+            // Opción 1: Recargar la página para reflejar cambios
+            window.location.reload();
+            
+            // Opción 2: Actualización dinámica sin recargar
+            // actualizarEstadoUsuario(usuarioId, false);
+        } else {
+            alertify.error(data.message || 'Error al desbanear usuario');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alertify.error(error.message || 'Ocurrió un error al desbanear');
+    });
+}
+
+// Función opcional para actualización dinámica
+function actualizarEstadoUsuario(usuarioId, estaBaneado) {
+    const fila = document.querySelector(`tr[data-usuario-id="${usuarioId}"]`);
+    if (fila) {
+        // Actualizar clases CSS
+        if (estaBaneado) {
+            fila.classList.add('bg-red-50');
+        } else {
+            fila.classList.remove('bg-red-50');
+        }
+        
+        // Actualizar botones
+        const botonesContainer = fila.querySelector('.acciones-baneo');
+        if (botonesContainer) {
+            botonesContainer.innerHTML = estaBaneado ?
+                `<button onclick="desbanearUsuario(${usuarioId})" class="...">Desbanear</button>` :
+                `<button onclick="mostrarModalBanear(${usuarioId})" class="...">Banear</button>`;
+        }
+    }
+}
 // Función para mostrar el modal de baneo
 function mostrarModalBanear(usuarioId) {
     document.getElementById('modal_usuario_id').value = usuarioId;
