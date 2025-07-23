@@ -80,6 +80,10 @@ Route::post('/denuncias/guardar', [DenunciaController::class, 'store'])->name('d
 
 
 Route::post('/resenas', [ResenaController::class, 'store'])->name('resenas.store');
+Route::put('/resenas/{resena}', [ResenaController::class, 'update'])->name('resenas.update');
+Route::delete('/resenas/{resena}', [ResenaController::class, 'destroy'])->name('resenas.destroy');
+
+Route::get('/resenas/check', [ResenaController::class, 'check'])->name('resenas.check');
 
 Route::post('/usuario/solicitudesReserva/{id}/aprobar', [ReservaController::class, 'aprobarReserva'])->name('solicitudesReserva.aprobar');
 Route::post('/usuario/solicitudesReserva/{id}/rechazar', [ReservaController::class, 'rechazarReserva'])->name('solicitudesReserva.rechazar');
