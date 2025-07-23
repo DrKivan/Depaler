@@ -106,7 +106,7 @@ public function ListarReserva()
         $reserva->estado = 'confirmada';
         $reserva->save();
 
-        return redirect()->route('usuario.propietario.solicitudreserva')->with('success', 'Reserva aprobada exitosamente.');
+        return redirect()->route('propietario.solicitudes')->with('success', 'Reserva aprobada exitosamente.');
     }
 
     public function rechazarReserva($id)
@@ -115,7 +115,7 @@ public function ListarReserva()
         $reserva->estado = 'cancelada';
         $reserva->save();
 
-        return redirect()->route('usuario.propietario.solicitudreserva')->with('success', 'Reserva rechazada exitosamente.');
+        return redirect()->route('propietario.solicitudes')->with('success', 'Reserva rechazada exitosamente.');
     }
 
 }
