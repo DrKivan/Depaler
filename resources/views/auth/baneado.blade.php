@@ -9,6 +9,14 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
     <div class="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full text-center">
+
+        <!-- ✅ Mensaje de éxito -->
+        @if(session('success'))
+            <div class="mb-4 p-4 text-green-700 bg-green-100 border border-green-400 rounded-lg text-sm">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <!-- Icono -->
         <div class="flex justify-center mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -29,15 +37,33 @@
         <!-- Botones -->
         <div class="flex flex-col space-y-3">
             @if(session('estado_baneo') === 'temporal')
-                <a href="#" class="w-full inline-block text-center bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
+                <button id="btn-apelar" class="w-full bg-yellow-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
                     Apelar Baneo
-                </a>
+                </button>
             @endif
             <a href="{{ route('logout') }}" class="w-full inline-block text-center bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-400 transition">
                 Cerrar Sesión
             </a>
         </div>
+
+        <!-- Formulario de Apelación (Oculto por defecto) -->
+        <div id="form-apelacion" class="hidden mt-6">
+            <form action="{{ route('apelacion.store') }}" method="POST" class="space-y-4">
+                @csrf
+                <input type="hidden" name="baneo_id" value="{{ session('baneo_id') }}">
+                <textarea name="motivo" rows="4" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-yellow-500 focus:outline-none" placeholder="Escribe el motivo de tu apelación..." required></textarea>
+                <button type="submit" class="w-full bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                    Enviar Apelación
+                </button>
+            </form>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('btn-apelar')?.addEventListener('click', function () {
+            document.getElementById('form-apelacion').classList.toggle('hidden');
+        });
+    </script>
 
 </body>
 </html>

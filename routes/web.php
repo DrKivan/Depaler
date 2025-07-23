@@ -10,6 +10,7 @@ use App\Http\Controllers\PagoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DenunciaController;
 use App\Http\Controllers\ResenaController;
+use App\Http\Controllers\ApelacionController;
 
 /*Route::get('/',[UsuarioController::class,'index'])->name('usuario.index');
 Route::get('/baneos',[BaneoController::class,'baneo'])->name('baneos');
@@ -94,3 +95,6 @@ Route::post('/usuario/solicitudesReserva/{id}/rechazar', [ReservaController::cla
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/usuario/baneado', [AuthController::class, 'vistaBaneo'])->name('auth.baneado');
+Route::post('/apelacion/store', [ApelacionController::class, 'store'])->name('apelacion.store');
+
+

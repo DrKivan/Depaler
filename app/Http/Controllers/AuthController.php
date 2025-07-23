@@ -28,6 +28,7 @@ class AuthController extends Controller
         if ($usuario->baneado == 1 || ($baneo && in_array($baneo->estado, ['temporal', 'permanente']))) {
     Session::put('motivo_baneo', $baneo?->motivo ?? 'No especificado');
     Session::put('estado_baneo', $baneo?->estado ?? 'desconocido');
+    Session::put('baneo_id', $baneo?->id ?? null); // ✅ NUEVO
     return redirect()->route('auth.baneado');
 }
 
