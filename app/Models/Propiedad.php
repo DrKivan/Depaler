@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Propiedad extends Model
 {
@@ -30,6 +31,11 @@ class Propiedad extends Model
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'usuario_id');
+    }
+
+     public function resenas(): HasMany
+    {
+        return $this->hasMany(Resena::class, 'propiedad_id');
     }
 
 }
