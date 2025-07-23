@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento');
             $table->enum('tipo_usuario', ['usuario', 'propietario', 'moderador'])->default('usuario');
             $table->string('foto_perfil')->nullable(); // Ruta de la foto de perfil
+            $table->boolean('baneado')->default(0);
             $table->timestamps();
         });
     }

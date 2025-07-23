@@ -63,14 +63,11 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 @if($usuario->denuncias_recibidas_count >= 3)
                                     <div class="flex space-x-2">
-                                        <form action="{{ route('usuario.banear', $usuario->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" 
-                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs"
-                                                onclick="return confirm('¿Estás seguro de banear a este usuario?')">
-                                                Banear
-                                            </button>
-                                        </form>
+                                        
+                                            <button onclick="mostrarModalBanear({{ $usuario->id }})"
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs">
+        Banear
+    </button>
                                         <button onclick="mostrarDenuncias({{ $usuario->id }})"
                                             class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-1 px-3 rounded text-xs">
                                             Revisar
@@ -114,7 +111,7 @@
                                                         @endif
                                                         <div class="flex justify-between">
                                                             <span class="font-medium">Fecha:</span>
-                                                            <span>{{ $denuncia->created_at->format('d/m/Y H:i') }}</span>
+                                                            <span>{{ $denuncia->created_at}}</span>
                                                         </div>
                                                     </li>
                                                 @endforeach
@@ -131,7 +128,92 @@
             </table>
         </div>
     </div>
-    <script>
+    <div id="banearModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3 text-center">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Banear Usuario</h3>
+            <div class="mt-2 px-7 py-3">
+                <form id="banearForm" method="POST">
+                    @csrf
+                    <input type="hidden" name="usuario_id" id="modal_usuario_id">
+                    
+                    <div class="mb-4">
+                        <label for="motivo" class="block text-sm font-medium text-gray-700">Motivo del baneo</label>
+                        <textarea name="motivo" id="motivo" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="fecha_baneo" class="block text-sm font-medium text-gray-700">Fecha de baneo</label>
+                        <input type="date" name="fecha_baneo" id="fecha_baneo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="estado" class="block text-sm font-medium text-gray-700">Estado</label>
+                        <select name="estado" id="estado" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                            <option value="activo">Activo</option>
+                            <option value="revertido">Revertido</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex justify-end mt-4">
+                        <button type="button" onclick="cerrarModal()" class="mr-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            Confirmar Baneo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// Función para mostrar el modal de baneo
+function mostrarModalBanear(usuarioId) {
+    document.getElementById('modal_usuario_id').value = usuarioId;
+    document.getElementById('fecha_baneo').valueAsDate = new Date();
+    document.getElementById('banearModal').classList.remove('hidden');
+}
+
+// Función para cerrar el modal
+function cerrarModal() {
+    document.getElementById('banearModal').classList.add('hidden');
+}
+
+// Manejar el envío del formulario
+document.getElementById('banearForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const usuarioId = formData.get('usuario_id');
+    
+    fetch(`/moderador/banear/${usuarioId}`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'Accept': 'application/json',
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            cerrarModal();
+            // Recargar la página o actualizar la fila del usuario
+            window.location.reload();
+        } else {
+            alert('Error al banear usuario: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Ocurrió un error al procesar la solicitud');
+    });
+});
+
+// ... (mantén tus otras funciones como mostrarDenuncias) ...
+
 function mostrarDenuncias(usuarioId) {
     const row = document.getElementById(`denuncias-${usuarioId}`);
     const contenido = document.getElementById(`contenido-denuncias-${usuarioId}`);

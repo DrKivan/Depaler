@@ -27,4 +27,6 @@ class DenunciaController extends Controller
 
         return redirect()->back()->with('success', 'Denuncia registrada correctamente.');
     }
+
+    
 }

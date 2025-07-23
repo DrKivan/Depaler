@@ -18,7 +18,8 @@ class Usuario extends Model
         'direccion',
         'fecha_nacimiento',
         'tipo_usuario',
-        'foto_perfil' // Ruta de la foto de perfil
+        'foto_perfil', // Ruta de la foto de perfil
+        'baneado'
     ];
 
     protected $hidden = [

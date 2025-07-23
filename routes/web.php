@@ -35,8 +35,7 @@ Route::post('/registro', [AuthController::class, 'registrarGuardar'])->name('reg
 
 Route::get('/moderador/listarUsuario',[UsuarioController::class,'index'])->name('usuario.index');
 Route::get('/moderador/denuncias/{usuario}', [UsuarioController::class, 'denunciasUsuario'])->name('usuario.denuncias');
-Route::post('/moderador/banear/{usuario}', [UsuarioController::class, 'banear'])->name('usuario.banear');
-Route::get('/moderador/baneos',[BaneoController::class,'baneo'])->name('baneos');
+Route::post('/moderador/banear/{usuario}', [BaneoController::class, 'store'])->name('usuario.banear');
 //aprobar y rechazar propiedades y listar solicitudes
 Route::get('/moderador/solicitudes', [PropiedadController::class, 'VistaSolicitudesPropiedades'])->name('moderador.solicitudes');
 Route::post('/moderador/propiedad/{id}/aprobar', [PropiedadController::class, 'aprobar'])->name('propiedad.aprobar');
