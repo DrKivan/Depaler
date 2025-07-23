@@ -24,6 +24,12 @@ class Usuario extends Model
     protected $hidden = [
         'contrasena'
     ];
+
+    // En app/Models/Usuario.php
+public function denunciasRecibidas()
+{
+    return $this->hasMany(Denuncia::class, 'reportado_id');
+}
 }
 
 ?>
