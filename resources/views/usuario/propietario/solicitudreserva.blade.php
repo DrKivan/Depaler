@@ -1,6 +1,6 @@
 @extends('navegacion.plantillaU')
 
-@section('title', 'Crear Propiedad')
+@section('title', 'solicitudes reservas')
 
 @section('content')
 <div>
