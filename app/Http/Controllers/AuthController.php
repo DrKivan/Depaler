@@ -30,6 +30,8 @@ class AuthController extends Controller
         Session::put('email', $usuario->email);
         Session::put('telefono', $usuario->telefono);
         Session::put('direccion', $usuario->direccion);
+        Session::put('foto_perfil', $usuario->foto_perfil);
+        Session::save();
         // Redirigir según tipo de usuario
         if ($usuario->tipo_usuario === 'moderador') {
             return redirect()->route('usuario.index'); // lo ajustamos abajo
@@ -43,7 +45,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Session::flush();
+       Session::flush(); 
         return redirect()->route('login.form');
     }
     public function vistaRegistro()

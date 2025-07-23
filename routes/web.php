@@ -83,3 +83,4 @@ Route::post('/resenas', [ResenaController::class, 'store'])->name('resenas.store
 
 Route::post('/usuario/solicitudesReserva/{id}/aprobar', [ReservaController::class, 'aprobarReserva'])->name('solicitudesReserva.aprobar');
 Route::post('/usuario/solicitudesReserva/{id}/rechazar', [ReservaController::class, 'rechazarReserva'])->name('solicitudesReserva.rechazar');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

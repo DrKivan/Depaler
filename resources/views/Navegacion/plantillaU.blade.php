@@ -48,16 +48,32 @@
                 </div>
                 
                 <!-- Menú de usuario -->
-                <div class="hidden sm:ml-6 sm:flex sm:items-center">
-                    <div class="ml-3 relative">
-                        <button class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            <span class="sr-only">Abrir menú de usuario</span>
-                            <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center">
-                                <span class="text-white font-medium">U</span>
-                            </div>
-                        </button>
-                    </div>
-                </div>
+                <div class="hidden sm:flex sm:items-center relative">
+    @if(Session::has('usuario_id'))
+        <!-- Botón con foto -->
+        <button id="profileMenuBtn" class="flex items-center focus:outline-none">
+           <img class="h-8 w-8 rounded-full object-cover border cursor-pointer"
+     src="{{ asset(Session::get('foto_perfil') ?? 'default.png') }}"
+     alt="Foto de perfil">
+        </button>
+
+        <!-- Menú flotante -->
+       <!-- Menú flotante -->
+<div id="profileMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50">
+   
+    <!-- Botón que abrirá el modal con la info -->
+    <button id="openProfileModal" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        Mi Perfil
+    </button>
+    
+    <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Cerrar sesión</a>
+</div>
+
+    @else
+        <a href="{{ route('login.form') }}" class="text-blue-600 font-semibold">Iniciar sesión</a>
+    @endif
+</div>
+
                 
                 <!-- Botón de menú móvil -->
                 <div class="sm:hidden flex items-center">
@@ -158,6 +174,63 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const profileMenuBtn = document.getElementById('profileMenuBtn');
+  const profileMenu = document.getElementById('profileMenu');
+
+  if (profileMenuBtn && profileMenu) {
+    profileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // evita el cierre inmediato
+      profileMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!profileMenu.contains(e.target) && !profileMenuBtn.contains(e.target)) {
+        profileMenu.classList.add('hidden');
+      }
+    });
+  }
+</script>
+
+
+<!-- Modal de perfil -->
+<div id="profileModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white rounded-lg p-6 w-96 shadow-lg">
+        <h2 class="text-xl font-bold mb-4">Perfil de Usuario</h2>
+        <div class="space-y-2">
+            <p><strong>Nombre:</strong> {{ Session::get('usuario_nombre') }}</p>
+            <p><strong>Email:</strong> {{ Session::get('email') }}</p>
+            <p><strong>Teléfono:</strong> {{ Session::get('telefono') }}</p>
+            <p><strong>Dirección:</strong> {{ Session::get('direccion') }}</p>
+            <p><img class="h-16 w-16 rounded-full object-cover border" src="{{ asset(Session::get('foto_perfil') ?? 'default.png') }}" alt="Foto de perfil"></p>
+        </div>
+        <div class="mt-4 text-right">
+            <button id="closeProfileModal" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Cerrar</button>
+        </div>
+    </div>
+</div>
+<script>
+  const openProfileModal = document.getElementById('openProfileModal');
+  const closeProfileModal = document.getElementById('closeProfileModal');
+  const profileModal = document.getElementById('profileModal');
+
+  if (openProfileModal && closeProfileModal && profileModal) {
+    openProfileModal.addEventListener('click', () => {
+      profileModal.classList.remove('hidden');
+    });
+
+    closeProfileModal.addEventListener('click', () => {
+      profileModal.classList.add('hidden');
+    });
+
+    // Cerrar al hacer clic fuera del modal
+    profileModal.addEventListener('click', (e) => {
+      if (e.target === profileModal) {
+        profileModal.classList.add('hidden');
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
