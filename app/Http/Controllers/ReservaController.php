@@ -174,5 +174,22 @@ class ReservaController extends Controller
 
     return view('usuario.propietario.solicitudreserva', compact('reservas'));
 }
+    public function aprobarReserva($id)
+    {
+        $reserva = Reserva::findOrFail($id);
+        $reserva->estado = 'confirmada';
+        $reserva->save();
+
+        return redirect()->route('usuario.propietario.solicitudreserva')->with('success', 'Reserva aprobada exitosamente.');
+    }
+
+    public function rechazarReserva($id)
+    {
+        $reserva = Reserva::findOrFail($id);
+        $reserva->estado = 'cancelada';
+        $reserva->save();
+
+        return redirect()->route('usuario.propietario.solicitudreserva')->with('success', 'Reserva rechazada exitosamente.');
+    }
 
 }

@@ -80,3 +80,6 @@ Route::post('/denuncias/guardar', [DenunciaController::class, 'store'])->name('d
 
 
 Route::post('/resenas', [ResenaController::class, 'store'])->name('resenas.store');
+
+Route::post('/usuario/solicitudesReserva/{id}/aprobar', [ReservaController::class, 'aprobarReserva'])->name('solicitudesReserva.aprobar');
+Route::post('/usuario/solicitudesReserva/{id}/rechazar', [ReservaController::class, 'rechazarReserva'])->name('solicitudesReserva.rechazar');
