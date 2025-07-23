@@ -13,7 +13,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-   public function login(Request $request)
+    public function login(Request $request)
 {
     $request->validate([
         'email' => 'required|email',
@@ -23,25 +23,43 @@ class AuthController extends Controller
     $usuario = Usuario::where('email', $request->email)->first();
 
     if ($usuario && $usuario->contrasena === $request->contrasena) {
-        // Guardamos info en sesión
-        Session::put('usuario_id', $usuario->id);
-        Session::put('usuario_nombre', $usuario->nombre);
-        Session::put('tipo_usuario', $usuario->tipo_usuario);
-        Session::put('email', $usuario->email);
-        Session::put('telefono', $usuario->telefono);
-        Session::put('direccion', $usuario->direccion);
-        Session::put('foto_perfil', $usuario->foto_perfil);
+
+        $baneo = $usuario->baneo;
+        if ($usuario->baneado == 1 || ($baneo && in_array($baneo->estado, ['temporal', 'permanente']))) {
+    Session::put('motivo_baneo', $baneo?->motivo ?? 'No especificado');
+    Session::put('estado_baneo', $baneo?->estado ?? 'desconocido');
+    return redirect()->route('auth.baneado');
+}
+
+        
+       
+
+        Session::put([
+            'usuario_id'     => $usuario->id,
+            'usuario_nombre' => $usuario->nombre,
+            'tipo_usuario'   => $usuario->tipo_usuario,
+            'email'          => $usuario->email,
+            'telefono'       => $usuario->telefono,
+            'direccion'      => $usuario->direccion,
+            'foto_perfil'    => $usuario->foto_perfil,
+        ]);
+
         Session::save();
-        // Redirigir según tipo de usuario
-        if ($usuario->tipo_usuario === 'moderador') {
-            return redirect()->route('usuario.index'); // lo ajustamos abajo
-        } else {
-            return redirect()->route('propiedades.listar'); // lo ajustamos abajo
-        }
+
+        return $usuario->tipo_usuario === 'moderador'
+            ? redirect()->route('usuario.index')
+            : redirect()->route('propiedades.listar');
+
     } else {
         return back()->with('error', 'Credenciales incorrectas.');
     }
 }
+
+    public function vistaBaneo()
+    {
+    return view('auth.baneado');
+    }
+
 
     public function logout()
     {

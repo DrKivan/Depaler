@@ -60,6 +60,7 @@ Route::post('/registro', [AuthController::class, 'registrarGuardar'])->name('reg
 
 
 
+
 //Route::post('/usuario/reservar/guardar', [ReservaController::class, 'GuardarReserva'])->name('reserva.guardar');
 Route::get('/usuario/reservar/{propiedad_id}', [ReservaController::class, 'formularioReserva'])->name('reserva.formulario');
 
@@ -89,3 +90,5 @@ Route::get('/resenas/check', [ResenaController::class, 'check'])->name('resenas.
 Route::post('/usuario/solicitudesReserva/{id}/aprobar', [ReservaController::class, 'aprobarReserva'])->name('solicitudesReserva.aprobar');
 Route::post('/usuario/solicitudesReserva/{id}/rechazar', [ReservaController::class, 'rechazarReserva'])->name('solicitudesReserva.rechazar');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/usuario/baneado', [AuthController::class, 'vistaBaneo'])->name('auth.baneado');

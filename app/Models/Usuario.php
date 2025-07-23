@@ -31,6 +31,13 @@ public function denunciasRecibidas()
 {
     return $this->hasMany(Denuncia::class, 'reportado_id');
 }
+public function baneo()
+{
+    return $this->hasOne(Baneo::class)->latestOfMany(); 
 }
+
+}
+
+
 
 ?>
