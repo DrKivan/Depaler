@@ -16,13 +16,24 @@ public function index()
     $usuarios = Usuario::where('id', '!=', $usuarioId)
                 ->withCount('denunciasRecibidas')
                 ->with(['denunciasRecibidas' => function($query) {
-                    $query->latest()->limit(3); // Últimas 3 denuncias
+                    $query->latest()->limit(3);
                 }])
-                ->get();
+                ->with(['baneo']) // Solo cargamos el baneo
+                ->get()
+                ->each(function ($usuario) {
+                    // Cargamos TODAS las apelaciones si existe baneo
+                    if ($usuario->baneo) {
+                        $usuario->baneo->apelaciones = \App\Models\Apelacion::where('baneo_id', $usuario->baneo->id)
+                            ->orderBy('fecha_apelacion', 'desc')
+                            ->get();
+                        
+                        // Mantenemos la apelación individual para compatibilidad (la más reciente)
+                        $usuario->baneo->apelacion = $usuario->baneo->apelaciones->first();
+                    }
+                });
     
     return view('moderador.listarUsuario', compact('usuarios'));
 }
-
 public function denunciasUsuario(Usuario $usuario)
 {
     $denuncias = $usuario->denunciasRecibidas()
