@@ -72,79 +72,61 @@
             @endif
         </div>
 
-        <!-- Info Propiedad -->
-        <div class="space-y-1">
-            <div class="flex items-center justify-between">
-                <h3 class="text-sm font-medium text-gray-900 truncate">{{ $propiedad->direccion }}</h3>
-               @if($propiedad->promedio_resenas)
-    <div class="flex items-center space-x-1 flex-shrink-0 ml-2">
-        <svg class="w-3 h-3 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-        </svg>
-        <span class="text-sm text-gray-700">{{ number_format($propiedad->promedio_resenas, 1) }}</span>
-    </div>
+       <div class="space-y-1">
     <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-700">
-            {{ $propiedad->ciudad }}
-        </span>
-    </div>
-    <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-700">
-            {{ $propiedad->wifi ? 'Wi-Fi' : 'No Wi-Fi' }}
-        </span>
-    </div>
-    <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-700">
-            {{ $propiedad->television ? 'Televisión' : 'No Television' }}
-        </span>
-    </div>
-    <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-700">
-            {{ $propiedad->aire_acondicionado ? 'Aire Acondicionado' : 'No Aire Acondicionado' }}
-        </span>
-    </div>
-    <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-700">
-            {{ $propiedad->servicios_basicos ? 'Servicios Básicos' : 'No Servicios Básicos' }}
-        </span>
-    </div>
-@endif
+        <h3 class="text-sm font-medium text-gray-900 truncate">{{ $propiedad->direccion }}</h3>
 
-            </div>
-
-            <p class="text-sm text-gray-600 line-clamp-1">{{ $propiedad->titulo }}</p>
-
-            <p class="text-sm text-gray-600">
-                {{ $propiedad->num_habitaciones }} habitación{{ $propiedad->num_habitaciones != 1 ? 'es' : '' }} · 
-                {{ $propiedad->num_banos }} baño{{ $propiedad->num_banos != 1 ? 's' : '' }}
-            </p>
-
-            <p class="text-sm text-gray-600">Disponible todo el año</p>
-
-            <div class="flex items-baseline space-x-1 pt-1">
-                <span class="text-base font-semibold text-gray-900">${{ number_format($propiedad->precio_dia, 0, ',', '.') }}</span>
-                <span class="text-sm text-gray-600">/ noche</span>
-            </div>
-
-            
-
-            <!-- Botón de Reservar -->
-            <div class="pt-2">
-                 <a href="{{ route('reserva.formulario', ['propiedad_id' => $propiedad->id]) }}">Reservar</a>
-
-            </div>
+        @if($propiedad->promedio_resenas)
+        <div class="flex items-center space-x-1 flex-shrink-0 ml-2">
+            <svg class="w-3 h-3 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <span class="text-sm text-gray-700">{{ number_format($propiedad->promedio_resenas, 1) }}</span>
         </div>
+        @endif
     </div>
+
+    <!-- Ciudad -->
+    <p class="text-xs text-gray-500">{{ $propiedad->ciudad }}</p>
+
+    <!-- Título -->
+    <p class="text-sm text-gray-600 line-clamp-1">{{ $propiedad->titulo }}</p>
+
+    <!-- Habitaciones y baños -->
+    <p class="text-sm text-gray-600">
+        {{ $propiedad->num_habitaciones }} habitación{{ $propiedad->num_habitaciones != 1 ? 'es' : '' }} · 
+        {{ $propiedad->num_banos }} baño{{ $propiedad->num_banos != 1 ? 's' : '' }}
+    </p>
+
+    <!-- Servicios -->
+    <div class="flex flex-wrap gap-1 text-xs text-gray-500 mt-1">
+        @if($propiedad->wifi) <span class="bg-gray-100 px-2 py-1 rounded-full">Wi-Fi</span> @endif
+        @if($propiedad->television) <span class="bg-gray-100 px-2 py-1 rounded-full">TV</span> @endif
+        @if($propiedad->aire_acondicionado) <span class="bg-gray-100 px-2 py-1 rounded-full">A/C</span> @endif
+        @if($propiedad->servicios_basicos) <span class="bg-gray-100 px-2 py-1 rounded-full">Servicios Básicos</span> @endif
+    </div>
+
+    <!-- Precio -->
+    <div class="flex items-baseline space-x-1 pt-2">
+        <span class="text-base font-semibold text-gray-900">${{ number_format($propiedad->precio_dia, 0, ',', '.') }}</span>
+        <span class="text-sm text-gray-600">/ noche</span>
+    </div>
+
+    <!-- Botón de Reservar -->
+    <div class="pt-3">
+        <a href="{{ route('reserva.formulario', ['propiedad_id' => $propiedad->id]) }}" 
+           class="inline-block w-full text-center bg-[#FF5A5F] text-white font-semibold py-2 rounded-lg hover:bg-[#E00007] transition">
+            Reservar
+        </a>
+    </div>
+</div>
+
 @endforeach
 
                 </div>
 
                 <!-- Load More Button (Airbnb style) -->
-                <div class="text-center mt-12">
-                    <button class="px-6 py-3 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
-                        Mostrar más alojamientos
-                    </button>
-                </div>
+              
             @endif
         </div>
 

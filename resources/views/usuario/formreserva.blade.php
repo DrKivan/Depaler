@@ -36,10 +36,29 @@
     {{-- Detalles adicionales --}}
     <div class="bg-white rounded-lg shadow p-6 mb-8 space-y-2">
         <p><strong>Descripción:</strong> {{ $propiedad->descripcion }}</p>
+         <p><strong>Ciudad:</strong> {{ $propiedad->ciudad }}</p>
         <p><strong>Dirección:</strong> {{ $propiedad->direccion }}</p>
         <p><strong>Habitaciones:</strong> {{ $propiedad->num_habitaciones }}</p>
         <p><strong>Baños:</strong> {{ $propiedad->num_banos }}</p>
         <p><strong>Propietario:</strong> {{ $propiedad->usuario->nombre ?? 'No disponible' }}</p>
+        <!-- Servicios -->
+    <div class="mt-4">
+        <p><strong>Servicios y Comodidades:</strong></p>
+        <div class="flex flex-wrap gap-2 mt-2">
+            @if($propiedad->wifi) 
+                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">Wi-Fi</span>
+            @endif
+            @if($propiedad->television) 
+                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">Televisión</span>
+            @endif
+            @if($propiedad->aire_acondicionado) 
+                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">Aire Acondicionado</span>
+            @endif
+            @if($propiedad->servicios_basicos) 
+                <span class="bg-gray-100 px-3 py-1 rounded-full text-sm">Servicios Básicos</span>
+            @endif
+        </div>
+    </div>
     </div>
     <div class="bg-white rounded-lg shadow p-6 mb-8">
     <h3 class="text-xl font-semibold mb-4">Información del ofertante</h3>
