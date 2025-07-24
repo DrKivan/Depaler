@@ -41,11 +41,13 @@ public function ListarReserva()
     $propiedad = Propiedad::findOrFail($request->propiedad_id);
 
     $existeReserva = Reserva::where('propiedad_id', $request->propiedad_id)
-        ->where(function($query) use ($request) {
-            $query->where('fecha_inicio', '<=', $request->fecha_fin)
-                  ->where('fecha_fin', '>=', $request->fecha_inicio);
-        })
-        ->exists();
+    ->whereIn('estado', ['pendiente', 'confirmada']) 
+    ->where(function($query) use ($request) {
+        $query->where('fecha_inicio', '<=', $request->fecha_fin)
+              ->where('fecha_fin', '>=', $request->fecha_inicio);
+    })
+    ->exists();
+
 
     if ($existeReserva) {
         return back()->withErrors(['fecha_inicio' => 'La propiedad ya está reservada en ese rango de fechas.'])->withInput();
