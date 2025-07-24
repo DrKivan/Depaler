@@ -34,13 +34,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="mb-4">
-                <label for="precio_mensual" class="block font-semibold">Precio Mensual (Bs)</label>
-                <input type="number" step="0.01" name="precio_mensual" id="precio_mensual" class="w-full border border-gray-300 p-2 rounded" value="{{ old('precio_mensual') }}">
-                @error('precio_mensual')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+            
 
             <div class="mb-4">
                 <label for="precio_dia" class="block font-semibold">Precio por Día (Bs)</label>
@@ -68,6 +62,55 @@
                 @enderror
             </div>
         </div>
+        <div>
+            <label for="ciudad" class="block font-semibold">Ciudad</label>
+           <select name="ciudad" id="ciudad" class="w-full border border-gray-300 p-2 rounded" required>
+                
+                <option value="Tarija" {{ old('ciudad') == 'Tarija' ? 'selected' : '' }}>Tarija</option>
+                <option value="Cochabamba" {{ old('ciudad') == 'Cochabamba' ? 'selected' : '' }}>Cochabamba</option>
+                <option value="Beni" {{ old('ciudad') == 'Beni' ? 'selected' : '' }}>Beni</option>
+                <option value="La_Paz" {{ old('ciudad') == 'La_Paz' ? 'selected' : '' }}>La Paz</option>
+                <option value="Pando" {{ old('ciudad') == 'Pando' ? 'selected' : '' }}>Pando</option>
+                <option value="Potosi" {{ old('ciudad') == 'Potosi' ? 'selected' : '' }}>Potosi</option>
+                <option value="Oruro" {{ old('ciudad') == 'Oruro' ? 'selected' : '' }}>Oruro</option>
+                <option value="Santa_Cruz" {{ old('ciudad') == 'Santa_Cruz' ? 'selected' : '' }}>Santa Cruz</option>
+                <option value="Chuquisaca" {{ old('ciudad') == 'Chuquisaca' ? 'selected' : '' }}>Chuquisaca</option>
+           </select>
+        </div>
+       <!-- Sección de Servicios -->
+<div class="mb-6">
+    <h3 class="text-lg font-semibold mb-4">Servicios y Comodidades</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Wifi -->
+        <label class="flex items-center space-x-2">
+            <input type="hidden" name="wifi" value="0">
+            <input type="checkbox" name="wifi" value="1" {{ old('wifi') == 1 ? 'checked' : '' }}>
+            <span>WiFi</span>
+        </label>
+
+        <!-- Televisión -->
+        <label class="flex items-center space-x-2">
+            <input type="hidden" name="television" value="0">
+            <input type="checkbox" name="television" value="1" {{ old('television') == 1 ? 'checked' : '' }}>
+            <span>Televisión</span>
+        </label>
+
+        <!-- Aire Acondicionado -->
+        <label class="flex items-center space-x-2">
+            <input type="hidden" name="aire_acondicionado" value="0">
+            <input type="checkbox" name="aire_acondicionado" value="1" {{ old('aire_acondicionado') == 1 ? 'checked' : '' }}>
+            <span>Aire Acondicionado</span>
+        </label>
+
+        <!-- Servicios Básicos -->
+        <label class="flex items-center space-x-2">
+            <input type="hidden" name="servicios_basicos" value="0">
+            <input type="checkbox" name="servicios_basicos" value="1" {{ old('servicios_basicos') == 1 ? 'checked' : '' }}>
+            <span>Servicios Básicos</span>
+        </label>
+    </div>
+</div>
+
 
         <div class="mb-4">
             <label for="estado" class="block font-semibold">Estado</label>

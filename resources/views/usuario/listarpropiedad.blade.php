@@ -83,6 +83,31 @@
         </svg>
         <span class="text-sm text-gray-700">{{ number_format($propiedad->promedio_resenas, 1) }}</span>
     </div>
+    <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-700">
+            {{ $propiedad->ciudad }}
+        </span>
+    </div>
+    <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-700">
+            {{ $propiedad->wifi ? 'Wi-Fi' : 'No Wi-Fi' }}
+        </span>
+    </div>
+    <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-700">
+            {{ $propiedad->television ? 'Televisión' : 'No Television' }}
+        </span>
+    </div>
+    <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-700">
+            {{ $propiedad->aire_acondicionado ? 'Aire Acondicionado' : 'No Aire Acondicionado' }}
+        </span>
+    </div>
+    <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-700">
+            {{ $propiedad->servicios_basicos ? 'Servicios Básicos' : 'No Servicios Básicos' }}
+        </span>
+    </div>
 @endif
 
             </div>
@@ -101,7 +126,7 @@
                 <span class="text-sm text-gray-600">/ noche</span>
             </div>
 
-            <p class="text-xs text-gray-500">${{ number_format($propiedad->precio_mensual, 0, ',', '.') }} / mes</p>
+            
 
             <!-- Botón de Reservar -->
             <div class="pt-2">

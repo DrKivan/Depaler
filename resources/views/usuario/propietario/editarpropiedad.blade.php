@@ -34,13 +34,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="mb-4">
-                <label for="precio_mensual" class="block font-semibold">Precio Mensual (Bs)</label>
-                <input type="number" step="0.01" name="precio_mensual" id="precio_mensual" class="w-full border border-gray-300 p-2 rounded" value="{{ old('precio_mensual', $propiedad->precio_mensual) }}">
-                @error('precio_mensual')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+           
 
             <div class="mb-4">
                 <label for="precio_dia" class="block font-semibold">Precio por Día (Bs)</label>
@@ -68,6 +62,46 @@
                 @enderror
             </div>
         </div>
+         
+        <div class="mb-4">
+            <label for="ciudad" class="block font-semibold">Ciudad</label>
+            <select name="ciudad" id="ciudad" class="w-full border border-gray-300 p-2 rounded" required>
+                <option value="">Seleccione una ciudad</option>
+                @foreach(['Tarija','Cochabamba','Beni','La Paz','Pando','Potosi','Oruro','Santa_Cruz','Chuquisaca'] as $ciudad)
+                    <option value="{{ $ciudad }}" {{ old('ciudad', $propiedad->ciudad) == $ciudad ? 'selected' : '' }}>
+                        {{ $ciudad }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+       
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-4">Servicios y Comodidades</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" name="wifi" value="1"
+                        {{ old('wifi', $propiedad->wifi) ? 'checked' : '' }}>
+                    <span>WiFi</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" name="television" value="1"
+                        {{ old('television', $propiedad->television) ? 'checked' : '' }}>
+                    <span>Televisión</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" name="aire_acondicionado" value="1"
+                        {{ old('aire_acondicionado', $propiedad->aire_acondicionado) ? 'checked' : '' }}>
+                    <span>Aire Acondicionado</span>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" name="servicios_basicos" value="1"
+                        {{ old('servicios_basicos', $propiedad->servicios_basicos) ? 'checked' : '' }}>
+                    <span>Servicios Básicos</span>
+                </label>
+            </div>
+        </div>
+
 
         <div class="mb-4">
             <label for="estado" class="block font-semibold">Estado</label>

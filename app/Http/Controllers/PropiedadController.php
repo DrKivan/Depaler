@@ -35,12 +35,16 @@ class PropiedadController extends Controller
         'titulo' => 'required|string|max:255',
         'descripcion' => 'required|string',
         'direccion' => 'required|string',
-        'precio_mensual' => 'nullable|numeric',
         'precio_dia' => 'nullable|numeric',
         'num_habitaciones' => 'required|integer',
         'num_banos' => 'required|integer',
         'estado' => 'required|string',
-        'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'ciudad' => 'required|string',
+        'wifi' => 'required|in:0,1',
+        'television' => 'required|in:0,1',
+        'aire_acondicionado' => 'required|in:0,1',
+        'servicios_basicos' => 'required|in:0,1',
     ]);
 
     $usuarioId = $request->session()->get('usuario_id');
@@ -49,13 +53,17 @@ class PropiedadController extends Controller
         'titulo' => $request->titulo,
         'descripcion' => $request->descripcion,
         'direccion' => $request->direccion,
-        'precio_mensual' => $request->precio_mensual,
         'precio_dia' => $request->precio_dia,
         'num_habitaciones' => $request->num_habitaciones,
         'num_banos' => $request->num_banos,
         'estado' => $request->estado,
         'aprobada' => 'pendiente', // Estado inicial de la propiedad
-        'usuario_id' => $usuarioId
+        'usuario_id' => $usuarioId,
+        'ciudad' => $request->ciudad,
+        'wifi' => $request->wifi,
+        'television' => $request->television,
+        'aire_acondicionado' => $request->aire_acondicionado,
+        'servicios_basicos' => $request->servicios_basicos,
     ]);
 
     if ($request->hasFile('imagenes')) {
@@ -141,12 +149,16 @@ class PropiedadController extends Controller
         'titulo' => 'required|string|max:255',
         'descripcion' => 'required|string',
         'direccion' => 'required|string',
-        'precio_mensual' => 'nullable|numeric',
         'precio_dia' => 'nullable|numeric',
         'num_habitaciones' => 'required|integer',
         'num_banos' => 'required|integer',
         'estado' => 'required|string',
-        'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+        'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'ciudad' => 'required|string',
+        'wifi' => 'required|in:0,1',
+        'television' => 'required|in:0,1',
+        'aire_acondicionado' => 'required|in:0,1',
+        'servicios_basicos' => 'required|in:0,1',
     ]);
 
     $propiedad = Propiedad::findOrFail($id);
@@ -171,8 +183,9 @@ class PropiedadController extends Controller
 
     // ✅ Actualizar datos de la propiedad
     $propiedad->update($request->only([
-        'titulo', 'descripcion', 'direccion', 'precio_mensual',
-        'precio_dia', 'num_habitaciones', 'num_banos', 'estado'
+         'titulo', 'descripcion', 'direccion', 
+        'precio_dia', 'num_habitaciones', 'num_banos', 'estado',
+        'ciudad', 'wifi', 'television', 'aire_acondicionado', 'servicios_basicos'
     ]));
 
     // ✅ Subir nuevas imágenes (si hay)

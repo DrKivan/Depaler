@@ -105,56 +105,78 @@
                     </div>
 
                     <!-- Datos principales -->
-                    <div class="flex-1 p-5">
-                        <h3 class="text-lg font-bold text-gray-900 truncate" title="{{ $propiedad->titulo }}">
-                            {{ $propiedad->titulo }}
-                        </h3>
-                        <p class="mt-1 text-sm text-gray-600 line-clamp-2">
-                            {{ $propiedad->descripcion }}
-                        </p>
+<div class="flex-1 p-5">
+    <h3 class="text-lg font-bold text-gray-900 truncate" title="{{ $propiedad->titulo }}">
+        {{ $propiedad->titulo }}
+    </h3>
+    <p class="mt-1 text-sm text-gray-600 line-clamp-2">
+        {{ $propiedad->descripcion }}
+    </p>
 
-                        <!-- Características rápidas -->
-                        <div class="mt-3 flex items-center space-x-4 text-sm text-gray-500">
-                            <span class="flex items-center">
-                                <svg class="w-4 h-4 mr-1 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                                </svg>
-                                {{ $propiedad->num_habitaciones }} hab
-                            </span>
-                            <span class="flex items-center">
-                                <svg class="w-4 h-4 mr-1 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 8l-2-2m0 0l2-2m-2 2h12"/>
-                                </svg>
-                                {{ $propiedad->num_banos }} baños
-                            </span>
-                            <span class="flex items-center">
-                                <svg class="w-4 h-4 mr-1 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                                {{ $propiedad->direccion }}
-                            </span>
-                        </div>
+    <!-- Características rápidas -->
+    <div class="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500">
+        <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            {{ $propiedad->num_habitaciones }} hab
+        </span>
+        <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 8l-2-2m0 0l2-2m-2 2h12"/>
+            </svg>
+            {{ $propiedad->num_banos }} baños
+        </span>
+    </div>
 
-                        <!-- Precios -->
-                        <div class="mt-4 flex items-end justify-between">
-                            <div>
-                                <p class="text-xs text-gray-500">Desde</p>
-                                <p class="text-xl font-bold text-indigo-600">
-                                    ${{ number_format($propiedad->precio_dia, 0, ',', '.') }}<span class="text-sm font-normal text-gray-500">/día</span>
-                                </p>
-                                <p class="text-xs text-gray-400">
-                                    ${{ number_format($propiedad->precio_mensual, 0, ',', '.') }}/mes
-                                </p>
-                            </div>
-                            <div>
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold
-                                    {{ $propiedad->estado == 'Disponible' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                    {{ $propiedad->estado }}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Dirección y Ciudad -->
+    <div class="mt-2 text-sm text-gray-600">
+        <p>
+            <svg class="w-4 h-4 inline-block text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            {{ $propiedad->direccion }} - <span class="font-semibold">{{ $propiedad->ciudad }}</span>
+        </p>
+    </div>
+
+    <!-- ✅ Servicios -->
+    <div class="mt-3 flex flex-wrap gap-3 text-xs">
+        @if($propiedad->wifi)
+            <span class="flex items-center bg-indigo-50 text-indigo-700 px-2 py-1 rounded-full">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h.01M4.93 4.93a10.5 10.5 0 0114.14 0m-12.02 2.02a7.5 7.5 0 0110.6 0m-8.49 2.12a4.5 4.5 0 016.36 0"/>
+                </svg>
+                WiFi
+            </span>
+        @endif
+        @if($propiedad->television)
+            <span class="flex items-center bg-indigo-50 text-indigo-700 px-2 py-1 rounded-full">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 13h20M2 9h20M4 17h16l1 4H3l1-4z"/>
+                </svg>
+                TV
+            </span>
+        @endif
+        @if($propiedad->aire_acondicionado)
+            <span class="flex items-center bg-indigo-50 text-indigo-700 px-2 py-1 rounded-full">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 5h2m-2 4h2m-2 4h2"/>
+                </svg>
+                A/C
+            </span>
+        @endif
+        @if($propiedad->servicios_basicos)
+            <span class="flex items-center bg-indigo-50 text-indigo-700 px-2 py-1 rounded-full">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 000 2h1.6l2.1 9.74a1 1 0 00.98.76h9.64a1 1 0 00.98-.8l1.66-8.32H6"/>
+                </svg>
+                Servicios
+            </span>
+        @endif
+    </div>
+</div>
+
 
                     <!-- Botones de acción -->
                     <div class="border-t border-gray-100 p-4 flex items-center justify-between">

@@ -15,13 +15,17 @@ class Propiedad extends Model
         'titulo',
         'descripcion',
         'direccion',
-        'precio_mensual',
         'precio_dia',
         'num_habitaciones',
         'num_banos',
         'estado',
         'aprobada',
         'usuario_id',
+        'ciudad',
+        'wifi',
+        'television',
+        'aire_acondicionado',
+        'servicios_basicos',
     ];
     public function imagenes()
 {

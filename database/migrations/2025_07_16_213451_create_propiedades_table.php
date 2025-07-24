@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('descripcion');
             $table->string('direccion');
-            $table->decimal('precio_mensual', 10, 2);
+            
             $table->decimal('precio_dia', 10, 2);
             $table->integer('num_habitaciones');
             $table->integer('num_banos'); // Laravel acepta ñ pero se recomienda evitarla en código
@@ -26,6 +26,12 @@ return new class extends Migration
             $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
 
             $table->timestamps();
+            $table->string('ciudad');
+            $table->boolean('wifi')->default(false);
+            $table->boolean('television')->default(false);
+            $table->boolean('aire_acondicionado')->default(false);
+            $table->boolean('servicios_basicos')->default(false);
+
         });
     }
 
