@@ -8,6 +8,7 @@ use App\Models\ImagenPropiedad;
 use App\Mail\PropiedadNotificacion;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\File;
+use App\Models\Resena;
 
 class PropiedadController extends Controller
 {   
@@ -15,7 +16,12 @@ class PropiedadController extends Controller
     public function ListarPropiedad()
     {
         $usuarioId = session('usuario_id');
-        $propiedades = Propiedad::where('estado','=','disponible')->where('aprobada','=','aprobado')->where('usuario_id', '!=', $usuarioId)->get(); ;
+        $propiedades = Propiedad::where('estado','=','disponible')->where('aprobada','=','aprobado')->where('usuario_id', '!=', $usuarioId)->get(); 
+        foreach ($propiedades as $propiedad) {
+        $promedio = Resena::where('propiedad_id', $propiedad->id)->avg('calificacion');
+        $propiedad->promedio_resenas = $promedio ? round($promedio, 1) : null;
+    }
+
         return view('usuario.listarpropiedad', compact('propiedades'));
     }
      public function CrearPropiedad(){

@@ -7,6 +7,7 @@ use App\Models\Reserva;
 use App\Models\Pago;
 use App\Models\Propiedad;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Resena;
 
 
 class ReservaController extends Controller
@@ -27,7 +28,12 @@ public function ListarReserva()
     public function formularioReserva($propiedad_id)
     {
     $propiedad = Propiedad::findOrFail($propiedad_id);
-    return view('usuario.formreserva', compact('propiedad'));
+     $resenas = Resena::with('usuario')
+        ->where('propiedad_id', $propiedad_id)
+        ->latest()
+        ->take(4)
+        ->get();
+    return view('usuario.formreserva', compact('propiedad','resenas'));
     }
 
         public function resumen(Request $request)

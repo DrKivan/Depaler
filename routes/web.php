@@ -98,3 +98,5 @@ Route::get('/usuario/baneado', [AuthController::class, 'vistaBaneo'])->name('aut
 Route::post('/apelacion/store', [ApelacionController::class, 'store'])->name('apelacion.store');
 
 
+
+

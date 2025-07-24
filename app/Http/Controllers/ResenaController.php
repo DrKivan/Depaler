@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Resena;
 use Illuminate\Support\Facades\Session;
+use App\Models\Propiedad;
+use App\Models\Usuario;
 
 class ResenaController extends Controller
 {
@@ -82,6 +84,8 @@ class ResenaController extends Controller
             'resena' => $resena
         ]);
     }
+   
+
 }
 
 ?>

@@ -85,6 +85,18 @@
 </div>
 
 </div>
+@if($resenas->count())
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-4">Últimas Reseñas</h2>
+        @foreach ($resenas as $resena)
+            <div class="border-t pt-3 mt-3">
+                <p class="text-sm text-gray-800 font-semibold">{{ $resena->usuario->nombre ?? 'Usuario desconocido' }}</p>
+                <p class="text-gray-700">{{ $resena->comentario }}</p>
+                <p class="text-yellow-500">⭐ {{ $resena->calificacion }}/5</p>
+            </div>
+        @endforeach
+    </div>
+@endif
 
 
     {{-- Formulario de reserva --}}
