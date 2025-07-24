@@ -140,28 +140,29 @@
             deleteBtn.classList.remove('hidden');
             
             // Configurar eliminación
-            deleteBtn.onclick = async function() {
+            deleteBtn.onclick = function() {
     if (confirm('¿Estás seguro de eliminar esta reseña?')) {
-        try {
-            const response = await fetch(`/resenas/${resenaId}`, {  // ← Asegúrate que sea /resenas/ y no /usuario/listarreservas
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                window.location.reload();
-            } else {
-                const error = await response.json();
-                alert(error.message || 'Error al eliminar la reseña');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Error al conectar con el servidor');
-        }
+        // Crear un formulario temporal
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/resenas/${resenaId}`;
+        
+        // Añadir CSRF token
+        const csrf = document.createElement('input');
+        csrf.type = 'hidden';
+        csrf.name = '_token';
+        csrf.value = document.querySelector('meta[name="csrf-token"]').content;
+        
+        // Añadir método DELETE
+        const method = document.createElement('input');
+        method.type = 'hidden';
+        method.name = '_method';
+        method.value = 'DELETE';
+        
+        form.appendChild(csrf);
+        form.appendChild(method);
+        document.body.appendChild(form);
+        form.submit();
     }
 };
         } else {
