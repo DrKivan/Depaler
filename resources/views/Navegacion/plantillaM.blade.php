@@ -21,15 +21,13 @@
       <div class="flex items-center">
         <a href="#" class="flex items-center">
           <img class="h-8 w-auto" src="logo.svg" alt="Logo">
-          <span class="ml-2 font-bold">RentMod</span>
+          <span class="ml-2 font-bold">Depaler</span>
         </a>
         <div class="hidden md:flex ml-10 space-x-4">
-          <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</a>
+          <a href="{{route('moderador.dashboard')}}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</a>
           <a href="{{ route('moderador.solicitudes') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Solicitudes</a>
-          <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Denuncias</a>
-          <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Baneos</a>
-          <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Apelaciones</a>
-          <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Reseñas</a>
+          <a href="{{route('usuario.index')}}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Usuarios Plataforma</a>
+
         </div>
       </div>
       <div class="hidden md:flex items-center space-x-4">
