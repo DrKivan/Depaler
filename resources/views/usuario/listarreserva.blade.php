@@ -50,7 +50,7 @@
                     </td>
                     <td class="py-2 px-4 border-b text-center">{{ ucfirst($reserva->estado) }}</td>
                     <td class="py-2 px-4 border-b text-center">
-                        @if ($reserva->estado === 'confirmado')
+                        @if ($reserva->estado === 'confirmada')
                             @php
                                 $tieneResena = $reserva->propiedad->resenas->where('usuario_id', session('usuario_id'))->first();
                             @endphp
