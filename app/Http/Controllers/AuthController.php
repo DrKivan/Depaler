@@ -49,7 +49,7 @@ class AuthController extends Controller
 
         return $usuario->tipo_usuario === 'moderador'
             ? redirect()->route('usuario.index')
-            : redirect()->route('propiedades.listar');
+            : redirect()->route('usuario.inicioUsuario');
 
     } else {
         return back()->with('error', 'Credenciales incorrectas.');

@@ -46,6 +46,7 @@ Route::post('/moderador/propiedad/{id}/rechazar', [PropiedadController::class, '
 Route::view('/moderador/dashboard', 'moderador.dashboard')->name('moderador.dashboard');
 
 
+Route::view('/usuario/inicioUsuario', 'usuario.inicioUsuario')->name('usuario.inicioUsuario');
 
 Route::get('/usuario/propiedades',[PropiedadController::class,'ListarPropiedad'])->name('propiedades.listar');
 Route::get('/usuario/propiedades/crear', [PropiedadController::class, 'CrearPropiedad'])->name('propieadades.crear');
