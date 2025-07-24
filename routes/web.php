@@ -43,6 +43,7 @@ Route::post('/moderador/desbanear/{usuario}', [BaneoController::class, 'desbanea
 Route::get('/moderador/solicitudes', [PropiedadController::class, 'VistaSolicitudesPropiedades'])->name('moderador.solicitudes');
 Route::post('/moderador/propiedad/{id}/aprobar', [PropiedadController::class, 'aprobar'])->name('propiedad.aprobar');
 Route::post('/moderador/propiedad/{id}/rechazar', [PropiedadController::class, 'rechazar'])->name('propiedad.rechazar');
+Route::view('/moderador/dashboard', 'moderador.dashboard')->name('moderador.dashboard');
 
 
 
