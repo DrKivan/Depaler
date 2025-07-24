@@ -114,6 +114,11 @@
             </button>
         </div>
     </form>
+    @if ($errors->has('fecha_inicio'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+        {{ $errors->first('fecha_inicio') }}
+    </div>
+@endif
 </div>
 
 {{-- Swiper JS --}}
