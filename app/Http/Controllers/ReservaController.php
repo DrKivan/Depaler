@@ -33,18 +33,37 @@ public function ListarReserva()
         ->latest()
         ->take(4)
         ->get();
-    return view('usuario.formreserva', compact('propiedad','resenas'));
+
+        
+    // Obtener todas las fechas reservadas (solo reservas confirmadas o pendientes)
+    $fechasReservadas = Reserva::where('propiedad_id', $propiedad_id)
+        ->whereIn('estado', ['pendiente', 'confirmada']) // o solo 'confirmada' si así decides
+        ->get()
+        ->flatMap(function ($reserva) {
+            $inicio = \Carbon\Carbon::parse($reserva->fecha_inicio);
+            $fin = \Carbon\Carbon::parse($reserva->fecha_fin);
+            return collect(range(0, $inicio->diffInDays($fin)))
+                ->map(fn($i) => $inicio->copy()->addDays($i)->toDateString());
+        })
+        ->toArray();
+    return view('usuario.formreserva', compact('propiedad','resenas', 'fechasReservadas'));
     }
 
         public function resumen(Request $request)
     {
+        if (new \DateTime($request->fecha_inicio) < new \DateTime()) {
+    return back()->withErrors(['fecha_inicio' => 'No puedes seleccionar una fecha pasada.'])->withInput();
+    }
     $request->validate([
-        'propiedad_id' => 'required|exists:propiedades,id',
-        'fecha_inicio' => 'required|date',
+         'propiedad_id' => 'required|exists:propiedades,id',
+        'fecha_inicio' => 'required|date|after_or_equal:today',
         'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
     ]);
 
     $propiedad = Propiedad::findOrFail($request->propiedad_id);
+
+
+    
 
     $existeReserva = Reserva::where('propiedad_id', $request->propiedad_id)
     ->whereIn('estado', ['pendiente', 'confirmada']) 
@@ -61,6 +80,7 @@ public function ListarReserva()
 
     $dias = (new \DateTime($request->fecha_inicio))->diff(new \DateTime($request->fecha_fin))->days ?: 1;
     $total = $dias * $propiedad->precio_dia;
+    
 
     return view('usuario.formPago', compact('propiedad', 'dias', 'total'))
         ->with('fecha_inicio', $request->fecha_inicio)
@@ -76,6 +96,24 @@ public function ListarReserva()
             'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
             'monto' => 'required|numeric|min:0',
         ]);
+                
+if (new \DateTime($request->fecha_inicio) < new \DateTime()) {
+    return back()->withErrors(['fecha_inicio' => 'No puedes seleccionar una fecha pasada.'])->withInput();
+}
+
+
+$existeReserva = Reserva::where('propiedad_id', $request->propiedad_id)
+    ->whereIn('estado', ['pendiente', 'confirmada']) 
+    ->where(function($query) use ($request) {
+        $query->where('fecha_inicio', '<=', $request->fecha_fin)
+              ->where('fecha_fin', '>=', $request->fecha_inicio);
+    })
+    ->exists();
+
+if ($existeReserva) {
+    return back()->withErrors(['fecha_inicio' => 'La propiedad ya está reservada en ese rango de fechas.'])->withInput();
+}
+
 
         $reserva = Reserva::create([
             'usuario_id' => $request->session()->get('usuario_id'),

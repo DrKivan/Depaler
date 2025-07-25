@@ -297,7 +297,8 @@
                                         <i class="far fa-calendar-alt text-gray-500"></i>
                                     </div>
                                     <input 
-                                        type="date" 
+                                        type="text" 
+                                        id="fecha_inicio"
                                         name="fecha_inicio" 
                                         class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-all shadow-sm"
                                     >
@@ -311,7 +312,8 @@
                                         <i class="far fa-calendar-alt text-gray-500"></i>
                                     </div>
                                     <input 
-                                        type="date" 
+                                        type="text" 
+                                        id="fecha_fin"
                                         name="fecha_fin" 
                                         class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-all shadow-sm"
                                     >
@@ -408,12 +410,92 @@
         </div>
     </div>
 </div>
-
 {{-- Swiper JS --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+<style>
+
+.flatpickr-day {
+    color: #000 !important;
+    font-weight: bold;
+}
+
+
+.flatpickr-day.disabled:not(.prevMonthDay):not(.nextMonthDay),
+.flatpickr-day.flatpickr-disabled:not(.prevMonthDay):not(.nextMonthDay) {
+    background-color: #ffcccc !important; 
+    color: #a00000 !important;            
+    font-weight: bold;
+    opacity: 1 !important;
+    cursor: not-allowed !important;
+}
+
+
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+    background: none !important;
+    color: #ccc !important;
+    opacity: 0.4 !important;
+    cursor: default !important;
+}
+
+
+.flatpickr-day.today {
+    border: 2px solid #000 !important;
+}
+
+
+.flatpickr-day.selected {
+    background: #007bff !important;
+    color: #fff !important;
+}
+
+
+.flatpickr-months .flatpickr-month {
+    background-color: #f0f0f0;
+    color: #000;
+    font-weight: bold;
+}
+
+
+.flatpickr-prev-month,
+.flatpickr-next-month {
+    color: #000 !important;
+}
+</style>
+
+
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- Idioma Español -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const fechasReservadas = @json($fechasReservadas); // ['2025-08-10', '2025-08-11', ...]
+
+    const inicioPicker = flatpickr("#fecha_inicio", {
+        locale: "es",
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        disable: fechasReservadas,
+        onChange: function(selectedDates, dateStr, instance) {
+            finPicker.set("minDate", dateStr);
+        }
+    });
+
+    const finPicker = flatpickr("#fecha_fin", {
+        locale: "es",
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        disable: fechasReservadas
+    });
+});
+</script>
 <script>
     // Inicializar Swiper con efectos mejorados
     new Swiper(".mySwiper", {
