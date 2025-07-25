@@ -2,26 +2,7 @@
 
 @section('header')
 <header class="relative z-50 px-6 py-4">
-    <nav class="flex items-center justify-between max-w-7xl mx-auto">
-        <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
-                <i class="fas fa-home text-black text-sm"></i>
-            </div>
-            <span class="text-xl font-serif text-amber-400">ESPACIOS</span>
-        </div>
-
-        <div class="hidden md:flex items-center space-x-8">
-            <a href="#inicio" class="text-gray-300 hover:text-amber-400 transition-colors">INICIO</a>
-            <a href="#espacios" class="text-gray-300 hover:text-amber-400 transition-colors">ESPACIOS</a>
-            <a href="#reseñas" class="text-gray-300 hover:text-amber-400 transition-colors">RESEÑAS</a>
-            <a href="#nosotros" class="text-gray-300 hover:text-amber-400 transition-colors">NOSOTROS</a>
-            <a href="#contacto" class="text-gray-300 hover:text-amber-400 transition-colors">CONTACTO</a>
-        </div>
-
-        <button class="bg-amber-600 hover:bg-amber-700 text-black font-medium px-6 py-2 rounded transition-colors">
-            REGISTRARSE
-        </button>
-    </nav>
+   
 </header>
 @endsection
 
