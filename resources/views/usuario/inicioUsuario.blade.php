@@ -1,288 +1,292 @@
 @extends('navegacion.plantillaU')
 
-@section('header')
-<header class="relative z-50 px-6 py-4">
-   
-</header>
-@endsection
-
 @section('content')
-<div class="min-h-screen bg-black text-white">
-    
-    <!-- Hero Section -->
-    <section id="inicio" class="relative h-screen flex items-center justify-center">
+<div class="bg-black text-white">
+    <!-- Hero Section - Ajustado para la navegación -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20">
         <div class="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
                  alt="Luxury space interior" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/70"></div>
         </div>
 
-        <div class="relative z-10 text-center max-w-4xl mx-auto px-6">
-            <div class="mb-6">
-                <div class="flex items-center justify-center mb-4">
+        <div class="relative z-10 text-center max-w-5xl mx-auto px-6 py-12">
+            <div class="mb-8">
+                <div class="flex items-center justify-center mb-6">
                     @for($i = 0; $i < 5; $i++)
-                        <i class="fas fa-star text-amber-400 text-sm"></i>
+                        <i class="fas fa-star text-amber-400 text-lg"></i>
                     @endfor
                 </div>
-                <p class="text-amber-400 text-sm tracking-widest uppercase mb-4">ALQUILER DE ESPACIOS PREMIUM</p>
+                <p class="text-amber-400 text-base tracking-widest uppercase mb-6 font-medium">ALQUILER DE ESPACIOS PREMIUM</p>
             </div>
 
-            <h1 class="text-5xl md:text-7xl font-serif mb-6 leading-tight">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif mb-8 leading-tight">
                 LOS MEJORES ESPACIOS<br>
                 <span class="text-amber-400">DE LUJO</span>
             </h1>
 
-            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            <p class="text-xl md:text-2xl text-gray-200 mb-16 max-w-3xl mx-auto leading-relaxed">
                 Descubre espacios únicos y exclusivos para tus eventos, reuniones o estadías especiales. 
                 Conectamos personas con los lugares más extraordinarios.
             </p>
 
-            <!-- Search Form -->
-            <div class="bg-black/80 backdrop-blur-sm rounded-lg p-6 max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="space-y-2">
-                        <label class="text-sm text-gray-400">UBICACIÓN</label>
-                        <input type="text" placeholder="¿Dónde buscas?" 
-                               class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white placeholder-gray-500">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center hover:bg-white/15 transition-all duration-300">
+                    <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-home text-white text-2xl"></i>
                     </div>
-                    <div class="space-y-2">
-                        <label class="text-sm text-gray-400">FECHA ENTRADA</label>
-                        <input type="date" class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-sm text-gray-400">FECHA SALIDA</label>
-                        <input type="date" class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white">
-                    </div>
-                    <div class="space-y-2">
-                        <label class="text-sm text-gray-400">HUÉSPEDES</label>
-                        <select class="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white">
-                            <option>1 Huésped</option>
-                            <option>2 Huéspedes</option>
-                            <option>3+ Huéspedes</option>
-                        </select>
-                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">500+</div>
+                    <div class="text-amber-400 font-medium">Espacios Únicos</div>
+                    <div class="text-gray-300 text-sm mt-1">Verificados y premium</div>
                 </div>
-                <button type="button" class="w-full mt-6 bg-amber-600 hover:bg-amber-700 text-black font-medium py-3 rounded transition-colors">
-                    <i class="fas fa-search mr-2"></i>
-                    BUSCAR ESPACIOS
-                </button>
+
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center hover:bg-white/15 transition-all duration-300">
+                    <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">4.9</div>
+                    <div class="text-amber-400 font-medium">Calificación</div>
+                    <div class="text-gray-300 text-sm mt-1">De nuestros huéspedes</div>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center hover:bg-white/15 transition-all duration-300">
+                    <div class="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">10K+</div>
+                    <div class="text-amber-400 font-medium">Huéspedes</div>
+                    <div class="text-gray-300 text-sm mt-1">Satisfechos</div>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div>
+                <a href="{{ route('propiedades.listar') }}" class="inline-flex items-center bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold px-12 py-4 rounded-2xl text-xl transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <i class="fas fa-search mr-3"></i>
+                    EXPLORAR ESPACIOS
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Spaces Section -->
-    <section id="espacios" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="flex items-center justify-center mb-4">
+    <!-- Featured Spaces Section - Con fondo claro -->
+    <section id="espacios" class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="flex items-center justify-center mb-6">
                     @for($i = 0; $i < 5; $i++)
-                        <i class="fas fa-star text-amber-400 text-sm"></i>
+                        <i class="fas fa-star text-amber-500 text-lg"></i>
                     @endfor
                 </div>
-                <h2 class="text-4xl font-serif mb-4">ESPACIOS DESTACADOS</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 text-gray-900">ESPACIOS DESTACADOS</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
                     Descubre nuestra selección curada de los espacios más exclusivos y mejor valorados por nuestra comunidad
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 <!-- Espacio 1 -->
-                <div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                    <div class="relative h-64">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105">
+                    <div class="relative h-64 md:h-80">
                         <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                              alt="Loft Moderno Centro" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-serif text-white">Loft Moderno Centro</h3>
-                            <div class="flex items-center space-x-1">
-                                <i class="fas fa-star text-amber-400 text-sm"></i>
-                                <span class="text-amber-400 text-sm">4.9</span>
-                            </div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1">
+                            <i class="fas fa-star text-amber-500 text-sm"></i>
+                            <span class="text-gray-900 font-semibold text-sm">4.9</span>
                         </div>
-                        <p class="text-gray-400 mb-4">Madrid, España</p>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mb-2">Loft Moderno Centro</h3>
+                        <p class="text-gray-600 mb-6 text-base md:text-lg">Madrid, España</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-amber-400">
-                                €120
-                                <span class="text-sm text-gray-400">/noche</span>
-                            </span>
-                            <span class="text-sm text-gray-400">(127 reseñas)</span>
+                            <div>
+                                <span class="text-2xl md:text-3xl font-bold text-gray-900">€120</span>
+                                <span class="text-gray-600 text-base md:text-lg">/noche</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">(127 reseñas)</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Espacio 2 -->
-                <div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                    <div class="relative h-64">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105">
+                    <div class="relative h-64 md:h-80">
                         <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                              alt="Villa con Piscina" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-serif text-white">Villa con Piscina</h3>
-                            <div class="flex items-center space-x-1">
-                                <i class="fas fa-star text-amber-400 text-sm"></i>
-                                <span class="text-amber-400 text-sm">4.8</span>
-                            </div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1">
+                            <i class="fas fa-star text-amber-500 text-sm"></i>
+                            <span class="text-gray-900 font-semibold text-sm">4.8</span>
                         </div>
-                        <p class="text-gray-400 mb-4">Barcelona, España</p>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mb-2">Villa con Piscina</h3>
+                        <p class="text-gray-600 mb-6 text-base md:text-lg">Barcelona, España</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-amber-400">
-                                €250
-                                <span class="text-sm text-gray-400">/noche</span>
-                            </span>
-                            <span class="text-sm text-gray-400">(89 reseñas)</span>
+                            <div>
+                                <span class="text-2xl md:text-3xl font-bold text-gray-900">€250</span>
+                                <span class="text-gray-600 text-base md:text-lg">/noche</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">(89 reseñas)</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Espacio 3 -->
-                <div class="bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                    <div class="relative h-64">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105">
+                    <div class="relative h-64 md:h-80">
                         <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                              alt="Apartamento de Lujo" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-serif text-white">Apartamento de Lujo</h3>
-                            <div class="flex items-center space-x-1">
-                                <i class="fas fa-star text-amber-400 text-sm"></i>
-                                <span class="text-amber-400 text-sm">4.9</span>
-                            </div>
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 flex items-center space-x-1">
+                            <i class="fas fa-star text-amber-500 text-sm"></i>
+                            <span class="text-gray-900 font-semibold text-sm">4.9</span>
                         </div>
-                        <p class="text-gray-400 mb-4">Valencia, España</p>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mb-2">Apartamento de Lujo</h3>
+                        <p class="text-gray-600 mb-6 text-base md:text-lg">Valencia, España</p>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-amber-400">
-                                €180
-                                <span class="text-sm text-gray-400">/noche</span>
-                            </span>
-                            <span class="text-sm text-gray-400">(156 reseñas)</span>
+                            <div>
+                                <span class="text-2xl md:text-3xl font-bold text-gray-900">€180</span>
+                                <span class="text-gray-600 text-base md:text-lg">/noche</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">(156 reseñas)</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- CTA en sección clara -->
+            <div class="text-center mt-16">
+                <a href="{{ route('propiedades.listar') }}" class="inline-flex items-center bg-gray-900 hover:bg-gray-800 text-white font-bold px-10 py-4 rounded-2xl text-lg transition-all transform hover:scale-105">
+                    <i class="fas fa-arrow-right mr-3"></i>
+                    VER TODOS LOS ESPACIOS
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section id="nosotros" class="py-20 px-6 bg-gray-900">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="relative h-96 rounded-lg overflow-hidden">
+    <!-- Stats Section - Fondo oscuro -->
+    <section id="nosotros" class="py-24 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="relative h-80 md:h-96 lg:h-[500px] rounded-3xl overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                              alt="Luxury interior" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                 </div>
 
-                <div>
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-award text-black text-xl"></i>
+                <div class="order-1 lg:order-2">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 md:w-16 md:h-16 bg-amber-500 rounded-full flex items-center justify-center mr-4 md:mr-6">
+                            <i class="fas fa-award text-white text-xl md:text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-serif text-amber-400">PLATAFORMA LÍDER</h3>
-                            <p class="text-gray-400">EN ALQUILER DE ESPACIOS PREMIUM</p>
+                            <h3 class="text-2xl md:text-3xl font-serif text-amber-400">PLATAFORMA LÍDER</h3>
+                            <p class="text-gray-400 text-base md:text-lg">EN ALQUILER DE ESPACIOS PREMIUM</p>
                         </div>
                     </div>
 
-                    <h2 class="text-4xl font-serif mb-6">
+                    <h2 class="text-4xl md:text-5xl font-serif mb-8 leading-tight text-white">
                         LA MEJOR PLATAFORMA DE ESPACIOS
                         <span class="text-amber-400"> DE LUJO</span>
                     </h2>
 
-                    <p class="text-gray-400 mb-8 leading-relaxed">
+                    <p class="text-gray-300 mb-10 leading-relaxed text-lg md:text-xl">
                         Conectamos a propietarios de espacios únicos con huéspedes que buscan experiencias extraordinarias. 
                         Nuestra plataforma garantiza calidad, seguridad y satisfacción en cada reserva.
                     </p>
 
-                    <div class="grid grid-cols-2 gap-8 mb-8">
+                    <div class="grid grid-cols-2 gap-8 lg:gap-10 mb-10">
                         <div class="text-center">
-                            <div class="text-4xl font-bold text-amber-400 mb-2">500+</div>
-                            <div class="text-gray-400">Espacios Verificados</div>
+                            <div class="text-4xl md:text-5xl font-bold text-amber-400 mb-3">500+</div>
+                            <div class="text-gray-400 text-base md:text-lg">Espacios Verificados</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-4xl font-bold text-amber-400 mb-2">4.9</div>
-                            <div class="text-gray-400">Calificación Promedio</div>
+                            <div class="text-4xl md:text-5xl font-bold text-amber-400 mb-3">4.9</div>
+                            <div class="text-gray-400 text-base md:text-lg">Calificación Promedio</div>
                         </div>
                     </div>
 
-                    <button class="bg-amber-600 hover:bg-amber-700 text-black font-medium px-8 py-3 rounded transition-colors">
+                    <a href="{{ route('propiedades.listar') }}" class="inline-flex items-center bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold px-8 md:px-10 py-3 md:py-4 rounded-2xl text-base md:text-lg transition-all transform hover:scale-105">
+                        <i class="fas fa-search mr-3"></i>
                         EXPLORAR ESPACIOS
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews Section -->
-    <section id="reseñas" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif mb-4">LO QUE DICEN NUESTROS HUÉSPEDES</h2>
-                <p class="text-gray-400">Experiencias reales de personas reales</p>
+    <!-- Reviews Section - Fondo claro -->
+    <section id="reseñas" class="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 text-gray-900">LO QUE DICEN NUESTROS HUÉSPEDES</h2>
+                <p class="text-gray-600 text-lg md:text-xl">Experiencias reales de personas reales</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 <!-- Reseña 1 -->
-                <div class="bg-gray-900 border border-gray-800 rounded-lg p-8">
-                    <div class="flex items-center space-x-1 mb-4">
+                <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center space-x-1 mb-6">
                         @for($i = 0; $i < 5; $i++)
-                            <i class="fas fa-star text-amber-400 text-sm"></i>
+                            <i class="fas fa-star text-amber-500 text-lg"></i>
                         @endfor
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
+                    <p class="text-gray-700 mb-8 leading-relaxed text-base md:text-lg">
                         "Una experiencia increíble. El loft superó todas mis expectativas. 
                         La ubicación es perfecta y las instalaciones de primera calidad."
                     </p>
                     <div class="flex items-center space-x-4">
                         <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                             alt="María González" class="w-12 h-12 rounded-full object-cover">
+                             alt="María González" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover">
                         <div>
-                            <div class="text-white font-semibold">María González</div>
-                            <div class="text-gray-400 text-sm">Madrid, España</div>
+                            <div class="text-gray-900 font-bold text-base md:text-lg">María González</div>
+                            <div class="text-gray-600 text-sm md:text-base">Madrid, España</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Reseña 2 -->
-                <div class="bg-gray-900 border border-gray-800 rounded-lg p-8">
-                    <div class="flex items-center space-x-1 mb-4">
+                <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center space-x-1 mb-6">
                         @for($i = 0; $i < 5; $i++)
-                            <i class="fas fa-star text-amber-400 text-sm"></i>
+                            <i class="fas fa-star text-amber-500 text-lg"></i>
                         @endfor
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
+                    <p class="text-gray-700 mb-8 leading-relaxed text-base md:text-lg">
                         "La villa con piscina fue el lugar perfecto para nuestras vacaciones familiares. 
                         Todo estaba impecable y la atención al cliente excepcional."
                     </p>
                     <div class="flex items-center space-x-4">
                         <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                             alt="Carlos Ruiz" class="w-12 h-12 rounded-full object-cover">
+                             alt="Carlos Ruiz" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover">
                         <div>
-                            <div class="text-white font-semibold">Carlos Ruiz</div>
-                            <div class="text-gray-400 text-sm">Barcelona, España</div>
+                            <div class="text-gray-900 font-bold text-base md:text-lg">Carlos Ruiz</div>
+                            <div class="text-gray-600 text-sm md:text-base">Barcelona, España</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Reseña 3 -->
-                <div class="bg-gray-900 border border-gray-800 rounded-lg p-8">
-                    <div class="flex items-center space-x-1 mb-4">
+                <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center space-x-1 mb-6">
                         @for($i = 0; $i < 5; $i++)
-                            <i class="fas fa-star text-amber-400 text-sm"></i>
+                            <i class="fas fa-star text-amber-500 text-lg"></i>
                         @endfor
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
+                    <p class="text-gray-700 mb-8 leading-relaxed text-base md:text-lg">
                         "Espacios únicos y verificados. La plataforma es muy fácil de usar 
                         y siempre encuentro exactamente lo que busco."
                     </p>
                     <div class="flex items-center space-x-4">
                         <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                             alt="Ana Martín" class="w-12 h-12 rounded-full object-cover">
+                             alt="Ana Martín" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover">
                         <div>
-                            <div class="text-white font-semibold">Ana Martín</div>
-                            <div class="text-gray-400 text-sm">Valencia, España</div>
+                            <div class="text-gray-900 font-bold text-base md:text-lg">Ana Martín</div>
+                            <div class="text-gray-600 text-sm md:text-base">Valencia, España</div>
                         </div>
                     </div>
                 </div>
@@ -290,43 +294,43 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-20 px-6 bg-gray-900">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-serif mb-4">¿POR QUÉ ELEGIR ESPACIOS?</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
+    <!-- Features Section - Fondo oscuro -->
+    <section class="py-24 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 text-white">¿POR QUÉ ELEGIR ESPACIOS?</h2>
+                <p class="text-gray-400 max-w-3xl mx-auto text-lg md:text-xl">
                     Ofrecemos una experiencia única y segura para propietarios e huéspedes
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 border border-gray-700 rounded-lg p-8 text-center hover:border-amber-600 transition-colors">
-                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-shield-alt text-black text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-3xl p-8 md:p-10 text-center hover:border-amber-500 hover:bg-gray-800/70 transition-all duration-300">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8">
+                        <i class="fas fa-shield-alt text-white text-2xl md:text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-serif mb-4 text-amber-400">Verificación Completa</h3>
-                    <p class="text-gray-400 leading-relaxed">
+                    <h3 class="text-xl md:text-2xl font-serif mb-4 md:mb-6 text-amber-400">Verificación Completa</h3>
+                    <p class="text-gray-300 leading-relaxed text-base md:text-lg">
                         Todos nuestros espacios pasan por un riguroso proceso de verificación para garantizar calidad y seguridad.
                     </p>
                 </div>
 
-                <div class="bg-gray-800 border border-gray-700 rounded-lg p-8 text-center hover:border-amber-600 transition-colors">
-                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-users text-black text-2xl"></i>
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-3xl p-8 md:p-10 text-center hover:border-amber-500 hover:bg-gray-800/70 transition-all duration-300">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8">
+                        <i class="fas fa-users text-white text-2xl md:text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-serif mb-4 text-amber-400">Comunidad Confiable</h3>
-                    <p class="text-gray-400 leading-relaxed">
+                    <h3 class="text-xl md:text-2xl font-serif mb-4 md:mb-6 text-amber-400">Comunidad Confiable</h3>
+                    <p class="text-gray-300 leading-relaxed text-base md:text-lg">
                         Sistema de reseñas y calificaciones que permite a la comunidad compartir experiencias reales.
                     </p>
                 </div>
 
-                <div class="bg-gray-800 border border-gray-700 rounded-lg p-8 text-center hover:border-amber-600 transition-colors">
-                    <div class="w-16 h-16 bg-amber-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-star text-black text-2xl"></i>
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-3xl p-8 md:p-10 text-center hover:border-amber-500 hover:bg-gray-800/70 transition-all duration-300">
+                    <div class="w-16 h-16 md:w-20 md:h-20 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8">
+                        <i class="fas fa-star text-white text-2xl md:text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-serif mb-4 text-amber-400">Experiencias Premium</h3>
-                    <p class="text-gray-400 leading-relaxed">
+                    <h3 class="text-xl md:text-2xl font-serif mb-4 md:mb-6 text-amber-400">Experiencias Premium</h3>
+                    <p class="text-gray-300 leading-relaxed text-base md:text-lg">
                         Espacios cuidadosamente seleccionados para ofrecer experiencias únicas e inolvidables.
                     </p>
                 </div>
@@ -334,39 +338,25 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-serif mb-6">¿LISTO PARA TU PRÓXIMA AVENTURA?</h2>
-            <p class="text-xl text-gray-300 mb-8">
+    <!-- Contact Section - Fondo claro -->
+    <section id="contacto" class="py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-5xl mx-auto text-center px-6">
+            <h2 class="text-4xl md:text-5xl font-serif mb-8 text-gray-900">¿LISTO PARA TU PRÓXIMA AVENTURA?</h2>
+            <p class="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed">
                 Únete a miles de huéspedes satisfechos y descubre espacios únicos en toda España
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-amber-600 hover:bg-amber-700 text-black font-bold px-8 py-4 rounded-lg transition-colors">
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="{{ route('propiedades.listar') }}" class="inline-flex items-center bg-gray-900 hover:bg-gray-800 text-white font-bold px-8 md:px-10 py-3 md:py-4 rounded-2xl text-base md:text-lg transition-all transform hover:scale-105">
+                    <i class="fas fa-search mr-3"></i>
                     BUSCAR ESPACIOS
-                </button>
-                <button class="border-2 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-black font-bold px-8 py-4 rounded-lg transition-colors">
+                </a>
+                <button class="inline-flex items-center border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-bold px-8 md:px-10 py-3 md:py-4 rounded-2xl text-base md:text-lg transition-all transform hover:scale-105">
+                    <i class="fas fa-plus mr-3"></i>
                     SER ANFITRIÓN
                 </button>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 py-12 px-6 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto text-center">
-            <div class="flex items-center justify-center space-x-2 mb-6">
-                <div class="w-8 h-8 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
-                    <i class="fas fa-home text-black text-sm"></i>
-                </div>
-                <span class="text-xl font-serif text-amber-400">ESPACIOS</span>
-            </div>
-            <p class="text-gray-400 mb-4">La plataforma líder en alquiler de espacios premium</p>
-            <div class="flex items-center justify-center space-x-6 text-sm text-gray-500">
-                <span>© 2024 Espacios. Todos los derechos reservados.</span>
-            </div>
-        </div>
-    </footer>
 </div>
 
 @push('styles')
