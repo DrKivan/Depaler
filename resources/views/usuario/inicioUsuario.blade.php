@@ -98,10 +98,10 @@
                     </div>
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-serif text-gray-900 mb-2">Loft Moderno Centro</h3>
-                        <p class="text-gray-600 mb-6 text-base md:text-lg">Madrid, España</p>
+                        <p class="text-gray-600 mb-6 text-base md:text-lg">Santa Cruz, Bolivia</p>
                         <div class="flex items-center justify-between">
                             <div>
-                                <span class="text-2xl md:text-3xl font-bold text-gray-900">€120</span>
+                                <span class="text-2xl md:text-3xl font-bold text-gray-900">Bs 120</span>
                                 <span class="text-gray-600 text-base md:text-lg">/noche</span>
                             </div>
                             <span class="text-gray-500 text-sm">(127 reseñas)</span>
@@ -121,10 +121,10 @@
                     </div>
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-serif text-gray-900 mb-2">Villa con Piscina</h3>
-                        <p class="text-gray-600 mb-6 text-base md:text-lg">Barcelona, España</p>
+                        <p class="text-gray-600 mb-6 text-base md:text-lg">Tarija, Bolivia</p>
                         <div class="flex items-center justify-between">
                             <div>
-                                <span class="text-2xl md:text-3xl font-bold text-gray-900">€250</span>
+                                <span class="text-2xl md:text-3xl font-bold text-gray-900">bs 250</span>
                                 <span class="text-gray-600 text-base md:text-lg">/noche</span>
                             </div>
                             <span class="text-gray-500 text-sm">(89 reseñas)</span>
@@ -144,10 +144,10 @@
                     </div>
                     <div class="p-6 md:p-8">
                         <h3 class="text-xl md:text-2xl font-serif text-gray-900 mb-2">Apartamento de Lujo</h3>
-                        <p class="text-gray-600 mb-6 text-base md:text-lg">Valencia, España</p>
+                        <p class="text-gray-600 mb-6 text-base md:text-lg">La Paz, Bolivia</p>
                         <div class="flex items-center justify-between">
                             <div>
-                                <span class="text-2xl md:text-3xl font-bold text-gray-900">€180</span>
+                                <span class="text-2xl md:text-3xl font-bold text-gray-900">bs 180</span>
                                 <span class="text-gray-600 text-base md:text-lg">/noche</span>
                             </div>
                             <span class="text-gray-500 text-sm">(156 reseñas)</span>
@@ -244,7 +244,7 @@
                              alt="María González" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover">
                         <div>
                             <div class="text-gray-900 font-bold text-base md:text-lg">María González</div>
-                            <div class="text-gray-600 text-sm md:text-base">Madrid, España</div>
+                            <div class="text-gray-600 text-sm md:text-base">Cochabamba, Bolivia</div>
                         </div>
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                              alt="Carlos Ruiz" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover">
                         <div>
                             <div class="text-gray-900 font-bold text-base md:text-lg">Carlos Ruiz</div>
-                            <div class="text-gray-600 text-sm md:text-base">Barcelona, España</div>
+                            <div class="text-gray-600 text-sm md:text-base">Tarija, Bolivia</div>
                         </div>
                     </div>
                 </div>
@@ -286,7 +286,7 @@
                              alt="Ana Martín" class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover">
                         <div>
                             <div class="text-gray-900 font-bold text-base md:text-lg">Ana Martín</div>
-                            <div class="text-gray-600 text-sm md:text-base">Valencia, España</div>
+                            <div class="text-gray-600 text-sm md:text-base">Santa Cruz, Tarija</div>
                         </div>
                     </div>
                 </div>
