@@ -51,7 +51,7 @@
                         <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
                             <i class="fas fa-home text-black text-lg"></i>
                         </div>
-                        <span class="text-2xl font-serif text-amber-400 font-bold">ESPACIOS</span>
+                        <span class="text-2xl font-serif text-amber-400 font-bold">DEPALER</span>
                     </div>
                     <h2 class="text-3xl font-serif text-white mb-2">Iniciar Sesión</h2>
                     <p class="text-gray-400">Accede a tu cuenta para descubrir espacios únicos</p>
