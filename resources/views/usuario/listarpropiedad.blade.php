@@ -1,333 +1,488 @@
 @extends('navegacion.plantillaU')
 
-@section('title', 'Lista de Propiedades para alquilar')
+@section('title', 'Espacios Premium - ESPACIOS')
 
 @section('content')
-    <div class="min-h-screen bg-white">
-        <!-- Header -->
-        <div class="border-b border-gray-200 bg-white sticky top-0 z-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <h1 class="text-2xl font-semibold text-gray-900">Alojamientos en Tarija</h1>
-                <p class="text-gray-600 mt-1">{{ count($propiedades) }} alojamientos</p>
+<div class="min-h-screen bg-gray-50 pt-0">
+    <!-- Hero Section con contexto - Dark -->
+    <section class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center mb-6">
+                    @for($i = 0; $i < 5; $i++)
+                        <i class="fas fa-star text-amber-400 text-lg"></i>
+                    @endfor
+                </div>
+                <h1 class="text-4xl md:text-6xl font-serif text-white mb-4">
+                    ESPACIOS ÚNICOS
+                    <span class="text-amber-400">EN TARIJA</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Descubre {{ count($propiedades) }} espacios cuidadosamente seleccionados y verificados. 
+                    Cada alojamiento ofrece una experiencia única con los más altos estándares de calidad.
+                </p>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white mb-2">{{ count($propiedades) }}+</div>
+                        <div class="text-amber-400 font-medium">Espacios Disponibles</div>
+                        <div class="text-gray-400 text-sm">Verificados y premium</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white mb-2">4.8</div>
+                        <div class="text-amber-400 font-medium">Calificación Promedio</div>
+                        <div class="text-gray-400 text-sm">De nuestros huéspedes</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white mb-2">24/7</div>
+                        <div class="text-amber-400 font-medium">Soporte</div>
+                        <div class="text-gray-400 text-sm">Atención personalizada</div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
+    <!-- Filtros y búsqueda - Light -->
+    <section class="bg-white border-b border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl font-serif text-gray-900 mb-2">Alojamientos Disponibles</h2>
+                    <p class="text-gray-600">Encuentra el espacio perfecto para tu estadía</p>
+                </div>
+                
+                <!-- Filtros rápidos -->
+                <div class="flex flex-wrap gap-3">
+                    <button class="px-4 py-2 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors">
+                        <i class="fas fa-filter mr-2"></i>Todos
+                    </button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+                        <i class="fas fa-home mr-2"></i>Casas
+                    </button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+                        <i class="fas fa-building mr-2"></i>Apartamentos
+                    </button>
+                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
+                        <i class="fas fa-star mr-2"></i>Premium
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Introducción - Light -->
+    <section class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-serif text-gray-900 mb-4">Espacios Cuidadosamente Seleccionados</h3>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Cada propiedad ha sido verificada personalmente por nuestro equipo para garantizar 
+                    que cumpla con nuestros estándares de calidad, limpieza y comodidad.
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Listings Grid -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <!-- Listings Grid - Light Background -->
+    <section class="bg-gray-50 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($propiedades->isEmpty())
                 <div class="text-center py-20">
-                    <div class="w-32 h-32 mx-auto mb-6 opacity-50">
-                        <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-                            <path fill="#FF5A5F" d="M64 8C32.3 8 8 32.3 8 64s24.3 56 56 56 56-24.3 56-56S95.7 8 64 8zm0 96c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z"/>
-                            <path fill="#FF5A5F" d="M64 32c-8.8 0-16 7.2-16 16 0 12 16 32 16 32s16-20 16-32c0-8.8-7.2-16-16-16z"/>
-                            <circle fill="white" cx="64" cy="48" r="8"/>
-                        </svg>
+                    <div class="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center">
+                        <i class="fas fa-home text-white text-4xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">No hay alojamientos disponibles</h3>
-                    <p class="text-gray-500">Prueba ajustando tus filtros o fechas de búsqueda.</p>
+                    <h3 class="text-3xl font-serif text-gray-900 mb-4">No hay espacios disponibles</h3>
+                    <p class="text-gray-600 text-lg mb-8">Prueba ajustando tus filtros o fechas de búsqueda.</p>
+                    <div class="mt-8">
+                        <a href="{{ route('usuario.inicioUsuario') }}" class="inline-flex items-center bg-gray-900 hover:bg-gray-800 text-white font-bold px-8 py-3 rounded-2xl transition-all transform hover:scale-105">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Volver al inicio
+                        </a>
+                    </div>
                 </div>
             @else
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach ($propiedades as $propiedad)
-    <div class="group cursor-default">
-        <!-- Imagen con Swiper Carousel -->
-        <div class="relative aspect-square mb-3 overflow-hidden rounded-xl">
-            @if ($propiedad->imagenes->isNotEmpty())
-                <div class="swiper mySwiper rounded-xl">
-                    <div class="swiper-wrapper">
-                        @foreach ($propiedad->imagenes as $imagen)
-                            <div class="swiper-slide">
-                                <img src="{{ asset($imagen->ruta) }}" alt="Imagen propiedad" class="w-full h-full object-cover">
+                    <div class="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
+                        <!-- Imagen con badges estilo referencia -->
+                        <div class="relative h-64 overflow-hidden">
+                            @if ($propiedad->imagenes->isNotEmpty())
+                                <div class="swiper mySwiper h-full">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($propiedad->imagenes as $imagen)
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($imagen->ruta) }}" alt="Imagen propiedad" class="w-full h-full object-cover">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-button-next !text-white !bg-black/50 !rounded-full !w-8 !h-8 !mt-0 !top-1/2 !transform !-translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="swiper-button-prev !text-white !bg-black/50 !rounded-full !w-8 !h-8 !mt-0 !top-1/2 !transform !-translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                    <div class="swiper-pagination !bottom-3"></div>
+                                </div>
+                            @else
+                                <div class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                                    <div class="text-center text-gray-500">
+                                        <i class="fas fa-image text-4xl mb-2"></i>
+                                        <p class="text-sm">Imagen no disponible</p>
+                                    </div>
+                                </div>
+                            @endif
+                            
+                            <!-- Badges estilo referencia -->
+                            <div class="absolute top-4 left-4 flex gap-2">
+                                <span class="bg-white/95 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">
+                                    Premium
+                                </span>
+                                <span class="bg-white/95 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-xs font-semibold">
+                                    Para Alquilar
+                                </span>
                             </div>
-                        @endforeach
+                            
+                            <!-- Time and views estilo referencia -->
+                            <div class="absolute bottom-4 right-4 flex items-center gap-3 text-white text-sm">
+                                <div class="flex items-center bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
+                                    <i class="fas fa-clock mr-1"></i>
+                                    <span>2 semanas</span>
+                                </div>
+                                <div class="flex items-center bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
+                                    <i class="fas fa-eye mr-1"></i>
+                                    <span>{{ rand(100, 999) }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content estilo referencia -->
+                        <div class="p-6">
+                            <!-- Agent info estilo referencia -->
+                            <div class="flex items-center mb-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                <span class="text-sm text-gray-600">Por <strong>ESPACIOS Team</strong></span>
+                            </div>
+
+                            <!-- Title and location -->
+                            <h3 class="text-xl font-bold text-gray-900 mb-1 line-clamp-1">{{ $propiedad->titulo }}</h3>
+                            <p class="text-gray-600 mb-4">{{ $propiedad->direccion }}, {{ $propiedad->ciudad }}</p>
+
+                            <!-- Price estilo referencia -->
+                            <div class="mb-4">
+                                <span class="text-sm text-gray-500">Desde</span>
+                                <div class="text-2xl font-bold text-gray-900">${{ number_format($propiedad->precio_dia, 0, ',', '.') }}</div>
+                            </div>
+
+                            <!-- Features estilo referencia -->
+                            <div class="flex items-center justify-between text-sm text-gray-600 mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-bed mr-1"></i>
+                                    <span>{{ $propiedad->num_habitaciones }}</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-bath mr-1"></i>
+                                    <span>{{ $propiedad->num_banos }}</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-expand-arrows-alt mr-1"></i>
+                                    <span>{{ rand(50, 200) }}m²</span>
+                                </div>
+                            </div>
+
+                            <!-- Rating estilo referencia -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    @if($propiedad->promedio_resenas)
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fas fa-star {{ $i <= $propiedad->promedio_resenas ? 'text-amber-400' : 'text-gray-300' }} text-sm"></i>
+                                        @endfor
+                                        <span class="ml-2 text-sm text-gray-600">({{ number_format($propiedad->promedio_resenas, 1) }})</span>
+                                    @else
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fas fa-star text-gray-300 text-sm"></i>
+                                        @endfor
+                                        <span class="ml-2 text-sm text-gray-600">Nuevo</span>
+                                    @endif
+                                </div>
+                                
+                                <!-- Action buttons -->
+                                <div class="flex gap-2">
+                                    <button onclick="verDetalles({{ $propiedad->id }})" class="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <a href="{{ route('reserva.formulario', ['propiedad_id' => $propiedad->id]) }}" class="p-2 text-gray-400 hover:text-amber-500 transition-colors">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
+                    @endforeach
                 </div>
-            @else
-                <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <div class="text-center text-gray-400">
-                        <svg class="w-16 h-16 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                        </svg>
-                        <p class="text-xs">Imagen no disponible</p>
+
+                <!-- Load More Section - Dark -->
+                <div class="mt-16 bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl p-12 text-center">
+                    <div class="mb-8">
+                        <h4 class="text-3xl font-serif text-white mb-4">¿No encuentras lo que buscas?</h4>
+                        <p class="text-gray-300 max-w-2xl mx-auto text-lg">
+                            Nuestro equipo está constantemente agregando nuevos espacios. 
+                            Regístrate para recibir notificaciones de nuevas propiedades.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="inline-flex items-center bg-white text-gray-900 hover:bg-gray-100 font-bold px-8 py-4 rounded-2xl text-lg transition-all transform hover:scale-105">
+                            <i class="fas fa-plus mr-3"></i>
+                            Mostrar más espacios
+                        </button>
+                        <button class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold px-8 py-4 rounded-2xl text-lg transition-all transform hover:scale-105">
+                            <i class="fas fa-bell mr-3"></i>
+                            Notificarme
+                        </button>
                     </div>
                 </div>
             @endif
         </div>
+    </section>
 
-       <div class="space-y-1">
-    <div class="flex items-center justify-between">
-        <h3 class="text-sm font-medium text-gray-900 truncate">{{ $propiedad->direccion }}</h3>
-
-        @if($propiedad->promedio_resenas)
-        <div class="flex items-center space-x-1 flex-shrink-0 ml-2">
-            <svg class="w-3 h-3 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-            </svg>
-            <span class="text-sm text-gray-700">{{ number_format($propiedad->promedio_resenas, 1) }}</span>
-        </div>
-        @endif
-    </div>
-
-    <!-- Ciudad -->
-    <p class="text-xs text-gray-500">{{ $propiedad->ciudad }}</p>
-
-    <!-- Título -->
-    <p class="text-sm text-gray-600 line-clamp-1">{{ $propiedad->titulo }}</p>
-
-    <!-- Habitaciones y baños -->
-    <p class="text-sm text-gray-600">
-        {{ $propiedad->num_habitaciones }} habitación{{ $propiedad->num_habitaciones != 1 ? 'es' : '' }} · 
-        {{ $propiedad->num_banos }} baño{{ $propiedad->num_banos != 1 ? 's' : '' }}
-    </p>
-
-    <!-- Servicios -->
-    <div class="flex flex-wrap gap-1 text-xs text-gray-500 mt-1">
-        @if($propiedad->wifi) <span class="bg-gray-100 px-2 py-1 rounded-full">Wi-Fi</span> @endif
-        @if($propiedad->television) <span class="bg-gray-100 px-2 py-1 rounded-full">TV</span> @endif
-        @if($propiedad->aire_acondicionado) <span class="bg-gray-100 px-2 py-1 rounded-full">A/C</span> @endif
-        @if($propiedad->servicios_basicos) <span class="bg-gray-100 px-2 py-1 rounded-full">Servicios Básicos</span> @endif
-    </div>
-
-    <!-- Precio -->
-    <div class="flex items-baseline space-x-1 pt-2">
-        <span class="text-base font-semibold text-gray-900">${{ number_format($propiedad->precio_dia, 0, ',', '.') }}</span>
-        <span class="text-sm text-gray-600">/ noche</span>
-    </div>
-
-    <!-- Botón de Reservar -->
-    <div class="pt-3">
-        <a href="{{ route('reserva.formulario', ['propiedad_id' => $propiedad->id]) }}" 
-           class="inline-block w-full text-center bg-[#FF5A5F] text-white font-semibold py-2 rounded-lg hover:bg-[#E00007] transition">
-            Reservar
-        </a>
-    </div>
-</div>
-
-@endforeach
-
-                </div>
-
-                <!-- Load More Button (Airbnb style) -->
-              
-            @endif
-        </div>
-
-        <!-- Modal for Property Details (hidden by default) -->
-        <div id="propertyModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
-            <div class="bg-white rounded-xl max-w-md w-full p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold">Confirmar Reserva</h3>
-                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div id="modalContent" class="space-y-4">
-                    <!-- Content will be populated by JavaScript -->
-                </div>
-                <div class="flex space-x-3 mt-6">
-                    <button onclick="closeModal()" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
-                        Cancelar
-                    </button>
-                    <button id="confirmReserve" class="flex-1 px-4 py-2 bg-[#FF5A5F] text-white rounded-lg hover:bg-[#E00007]">
-                        Reservar
+    <!-- Modal Premium para Detalles -->
+    <div id="propertyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 p-6 rounded-t-3xl">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-2xl font-serif text-white">Detalles del Espacio</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fas fa-times text-2xl"></i>
                     </button>
                 </div>
             </div>
+
+            <!-- Modal Content -->
+            <div id="modalContent" class="p-8">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="flex space-x-4 p-8 pt-0">
+                <button onclick="closeModal()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-4 rounded-xl transition-colors text-lg">
+                    Cerrar
+                </button>
+                <button id="confirmReserve" class="flex-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold py-4 rounded-xl transition-all text-lg">
+                    <i class="fas fa-calendar-check mr-2"></i>
+                    Reservar Ahora
+                </button>
+            </div>
         </div>
     </div>
+</div>
 @endsection
 
 @push('styles')
-    <style>
-        .line-clamp-1 {
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+<style>
+    .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+    /* Swiper customization */
+    .swiper-pagination-bullet {
+        background: rgba(255, 255, 255, 0.5) !important;
+        opacity: 1 !important;
+        width: 8px !important;
+        height: 8px !important;
+    }
+    
+    .swiper-pagination-bullet-active {
+        background: white !important;
+    }
 
-        /* Airbnb-like hover effects */
-        .group:hover .aspect-square > div {
-            transform: scale(1.05);
-        }
+    /* Card hover effects */
+    .group:hover {
+        transform: translateY(-4px);
+    }
 
-        /* Smooth transitions for all interactive elements */
-        * {
-            transition-property: transform, opacity, background-color, border-color;
-            transition-duration: 200ms;
-            transition-timing-function: ease-in-out;
-        }
+    /* Modal animations */
+    #propertyModal.show {
+        display: flex !important;
+        animation: fadeIn 0.3s ease-out;
+    }
 
-        /* Modal animations */
-        #propertyModal.show {
-            display: flex !important;
-            animation: fadeIn 0.2s ease-out;
-        }
+    #propertyModal.show > div {
+        animation: slideIn 0.4s ease-out;
+    }
 
-        #propertyModal.show > div {
-            animation: slideIn 0.3s ease-out;
-        }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
         }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
 
-        @keyframes slideIn {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Custom scrollbar for horizontal filters */
-        .overflow-x-auto::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .overflow-x-auto::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 2px;
-        }
-
-        .overflow-x-auto::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 2px;
-        }
-
-        .overflow-x-auto::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-    </style>
+    /* Swiper button customization */
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px !important;
+    }
+</style>
 @endpush
 
 @push('scripts')
-    <script>
-        let currentPropertyId = null;
+<script>
+    let currentPropertyId = null;
 
-        function reservarPropiedad(id) {
-            currentPropertyId = id;
-            
-            // Find the property data
-            const properties = @json($propiedades);
-            const property = properties.find(p => p.id === id);
-            
-            if (!property) {
-                alert('Propiedad no encontrada');
-                return;
-            }
+    function verDetalles(id) {
+        currentPropertyId = id;
+        
+        // Find the property data
+        const properties = @json($propiedades);
+        const property = properties.find(p => p.id === id);
+        
+        if (!property) {
+            alert('Propiedad no encontrada');
+            return;
+        }
 
-            // Populate modal content
-            const modalContent = document.getElementById('modalContent');
-            modalContent.innerHTML = `
-                <div class="space-y-3">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-medium text-gray-900">${property.titulo}</h4>
-                            <p class="text-sm text-gray-600">${property.direccion}</p>
-                        </div>
+        // Populate modal content
+        const modalContent = document.getElementById('modalContent');
+        modalContent.innerHTML = `
+            <div class="space-y-6">
+                <!-- Property Header -->
+                <div class="text-center border-b border-gray-200 pb-6">
+                    <div class="w-20 h-20 bg-gradient-to-r from-gray-800 to-gray-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-home text-white text-2xl"></i>
                     </div>
-                    
-                    <div class="bg-gray-50 rounded-lg p-4 space-y-2">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Habitaciones:</span>
-                            <span class="font-medium">${property.num_habitaciones}</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Baños:</span>
-                            <span class="font-medium">${property.num_banos}</span>
-                        </div>
-                        <hr class="border-gray-200">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Precio por noche:</span>
-                            <span class="font-semibold">$${property.precio_dia.toLocaleString()}</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Precio mensual:</span>
-                            <span class="font-semibold">$${property.precio_mensual.toLocaleString()}</span>
-                        </div>
+                    <h4 class="text-2xl font-serif text-gray-900 mb-2">${property.titulo}</h4>
+                    <div class="flex items-center justify-center text-gray-600">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span class="font-medium">${property.direccion}, ${property.ciudad}</span>
                     </div>
-
-                    <p class="text-xs text-gray-500 leading-relaxed">${property.descripcion}</p>
                 </div>
-            `;
 
-            // Update confirm button
-            const confirmBtn = document.getElementById('confirmReserve');
-            confirmBtn.onclick = () => confirmReservation(id);
+                <!-- Property Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 rounded-2xl p-6">
+                        <h5 class="font-serif text-lg text-gray-900 mb-4">Características</h5>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-bed text-gray-500 w-5 mr-3"></i>
+                                    <span class="text-gray-700">Habitaciones</span>
+                                </div>
+                                <span class="font-semibold text-gray-900">${property.num_habitaciones}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <i class="fas fa-bath text-gray-500 w-5 mr-3"></i>
+                                    <span class="text-gray-700">Baños</span>
+                                </div>
+                                <span class="font-semibold text-gray-900">${property.num_banos}</span>
+                            </div>
+                        </div>
+                    </div>
 
-            // Show modal
-            const modal = document.getElementById('propertyModal');
-            modal.classList.add('show');
-            modal.classList.remove('hidden');
-        }
+                    <div class="bg-gray-50 rounded-2xl p-6">
+                        <h5 class="font-serif text-lg text-gray-900 mb-4">Precios</h5>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Por noche</span>
+                                <span class="text-2xl font-bold text-gray-900">$${property.precio_dia.toLocaleString()}</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700">Por mes</span>
+                                <span class="text-xl font-semibold text-amber-600">$${property.precio_mensual.toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        function confirmReservation(id) {
-            // Here you would typically send the reservation to your backend
-            alert(`¡Reserva confirmada para la propiedad ID: ${id}!`);
-            console.log('Reserving property:', id);
-            
-            // Close modal
+                <!-- Description -->
+                <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-6">
+                    <h5 class="font-serif text-lg text-gray-900 mb-3">Descripción</h5>
+                    <p class="text-gray-700 leading-relaxed">${property.descripcion}</p>
+                </div>
+
+                <!-- Amenities -->
+                <div>
+                    <h5 class="font-serif text-lg text-gray-900 mb-4">Servicios Incluidos</h5>
+                    <div class="grid grid-cols-2 gap-3">
+                        ${property.wifi ? '<div class="flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-xl"><i class="fas fa-wifi mr-2"></i><span>Wi-Fi Gratis</span></div>' : ''}
+                        ${property.television ? '<div class="flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-xl"><i class="fas fa-tv mr-2"></i><span>Televisión</span></div>' : ''}
+                        ${property.aire_acondicionado ? '<div class="flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-xl"><i class="fas fa-snowflake mr-2"></i><span>Aire Acondicionado</span></div>' : ''}
+                        ${property.servicios_basicos ? '<div class="flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-xl"><i class="fas fa-check mr-2"></i><span>Servicios Básicos</span></div>' : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Update confirm button
+        const confirmBtn = document.getElementById('confirmReserve');
+        confirmBtn.onclick = () => {
+            window.location.href = `/reserva/formulario/${id}`;
+        };
+
+        // Show modal
+        const modal = document.getElementById('propertyModal');
+        modal.classList.add('show');
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('propertyModal');
+        modal.classList.remove('show');
+        modal.classList.add('hidden');
+        currentPropertyId = null;
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('propertyModal').addEventListener('click', function(e) {
+        if (e.target === this) {
             closeModal();
-            
-            // You can redirect to a reservation page or show a success message
-            // window.location.href = `/reservar/${id}`;
         }
+    });
 
-        function closeModal() {
-            const modal = document.getElementById('propertyModal');
-            modal.classList.remove('show');
-            modal.classList.add('hidden');
-            currentPropertyId = null;
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
         }
+    });
 
-        // Close modal when clicking outside
-        document.getElementById('propertyModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+    // Initialize Swiper for all carousels
+    document.addEventListener('DOMContentLoaded', function() {
+        const swipers = document.querySelectorAll('.mySwiper');
+        swipers.forEach(function(swiperEl) {
+            new Swiper(swiperEl, {
+                loop: true,
+                pagination: {
+                    el: swiperEl.querySelector('.swiper-pagination'),
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: swiperEl.querySelector('.swiper-button-next'),
+                    prevEl: swiperEl.querySelector('.swiper-button-prev'),
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+            });
         });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Simulate loading more listings
-        document.querySelector('button:contains("Mostrar más")') && 
-        document.querySelector('button').addEventListener('click', function() {
-            this.textContent = 'Cargando...';
-            this.disabled = true;
-            
-            setTimeout(() => {
-                this.textContent = 'Mostrar más alojamientos';
-                this.disabled = false;
-            }, 1500);
-        });
-    </script>
+    });
+</script>
 @endpush
