@@ -57,7 +57,7 @@ class PropiedadController extends Controller
         'num_habitaciones' => $request->num_habitaciones,
         'num_banos' => $request->num_banos,
         'estado' => $request->estado,
-        'aprobada' => 'pendiente', // Estado inicial de la propiedad
+        'aprobada' => 'pendiente', 
         'usuario_id' => $usuarioId,
         'ciudad' => $request->ciudad,
         'wifi' => $request->wifi,
@@ -181,14 +181,14 @@ class PropiedadController extends Controller
         }
     }
 
-    // ✅ Actualizar datos de la propiedad
+    // Actualizar datos de la propiedad
     $propiedad->update($request->only([
          'titulo', 'descripcion', 'direccion', 
         'precio_dia', 'num_habitaciones', 'num_banos', 'estado',
         'ciudad', 'wifi', 'television', 'aire_acondicionado', 'servicios_basicos'
     ]));
 
-    // ✅ Subir nuevas imágenes (si hay)
+    // Subir nuevas imágenes (si hay)
     if ($request->hasFile('imagenes')) {
         foreach ($request->file('imagenes') as $imagen) {
             $nombreArchivo = time().'_'.$imagen->getClientOriginalName();
