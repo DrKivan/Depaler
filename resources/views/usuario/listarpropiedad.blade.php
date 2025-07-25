@@ -168,7 +168,7 @@
                             <!-- Price estilo referencia -->
                             <div class="mb-4">
                                 <span class="text-sm text-gray-500">Desde</span>
-                                <div class="text-2xl font-bold text-gray-900">${{ number_format($propiedad->precio_dia, 0, ',', '.') }}</div>
+                                <div class="text-2xl font-bold text-gray-900">Bs {{ number_format($propiedad->precio_dia, 0, ',', '.') }}</div>
                             </div>
 
                             <!-- Features estilo referencia -->

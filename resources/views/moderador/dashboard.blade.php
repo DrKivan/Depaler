@@ -27,7 +27,9 @@
                     </div>
                 </div>
                 <div class="hidden lg:block">
-                    
+                    <div class="w-32 h-32 bg-white/10 rounded-full flex items-center justify-center">
+                        <i class="fas fa-book-open text-6xl text-white/80"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -70,9 +72,7 @@
                             </h2>
                             <p class="text-gray-300 mt-2">Principios fundamentales para una moderación justa y transparente</p>
                         </div>
-                        <img src="/placeholder.svg?height=80&width=80" 
-                             alt="Balanza de la Justicia" 
-                             class="w-20 h-20 opacity-80">
+                        
                     </div>
                 </div>
                 
@@ -127,9 +127,7 @@
 
                         <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200">
                             <div class="text-center mb-6">
-                                <img src="/placeholder.svg?height=120&width=120" 
-                                     alt="Ética Profesional" 
-                                     class="w-32 h-32 mx-auto rounded-2xl shadow-lg border-2 border-amber-400/30">
+                                
                             </div>
                             <h4 class="text-xl font-semibold text-gray-900 mb-4 flex items-center justify-center">
                                 <i class="fas fa-exclamation-triangle text-amber-500 mr-2"></i>
@@ -180,9 +178,7 @@
                             </h2>
                             <p class="text-gray-300 mt-2">Proceso completo para garantizar la calidad y autenticidad</p>
                         </div>
-                        <img src="/placeholder.svg?height=80&width=80" 
-                             alt="Verificación de Propiedades" 
-                             class="w-20 h-20 opacity-80">
+                        
                     </div>
                 </div>
                 
@@ -191,9 +187,7 @@
                         <!-- Checklist de Verificación -->
                         <div class="xl:col-span-2">
                             <div class="flex items-center mb-6">
-                                <img src="/placeholder.svg?height=60&width=60" 
-                                     alt="Lista de Verificación" 
-                                     class="w-16 h-16 rounded-xl mr-4 border-2 border-amber-400/30">
+                                
                                 <h3 class="text-2xl font-semibold text-gray-900">Lista de Verificación Obligatoria</h3>
                             </div>
                             
@@ -302,9 +296,7 @@
                         <!-- Panel de Acciones -->
                         <div class="space-y-6">
                             <div class="text-center mb-6">
-                                <img src="/placeholder.svg?height=100&width=100" 
-                                     alt="Proceso de Aprobación" 
-                                     class="w-24 h-24 mx-auto rounded-2xl border-2 border-amber-400/30">
+                                
                             </div>
 
                             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 shadow-sm">
@@ -366,9 +358,7 @@
                             </h2>
                             <p class="text-gray-300 mt-2">Monitoreo y administración de la comunidad</p>
                         </div>
-                        <img src="/placeholder.svg?height=80&width=80" 
-                             alt="Gestión de Usuarios" 
-                             class="w-20 h-20 opacity-80">
+                        
                     </div>
                 </div>
                 
@@ -376,9 +366,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
                             <div class="flex items-center mb-6">
-                                <img src="/placeholder.svg?height=60&width=60" 
-                                     alt="Señales de Alerta" 
-                                     class="w-16 h-16 rounded-xl mr-4 border-2 border-amber-400/30">
+                                
                                 <h3 class="text-xl font-semibold text-gray-900">Señales de Alerta</h3>
                             </div>
                             <div class="space-y-4">
@@ -426,9 +414,7 @@
 
                         <div>
                             <div class="flex items-center mb-6">
-                                <img src="/placeholder.svg?height=60&width=60" 
-                                     alt="Acciones de Moderación" 
-                                     class="w-16 h-16 rounded-xl mr-4 border-2 border-amber-400/30">
+                                
                                 <h3 class="text-xl font-semibold text-gray-900">Acciones Disponibles</h3>
                             </div>
                             <div class="space-y-4">
@@ -483,9 +469,7 @@
                             </h2>
                             <p class="text-gray-300 mt-2">Protocolo para resolver conflictos y reportes</p>
                         </div>
-                        <img src="/placeholder.svg?height=80&width=80" 
-                             alt="Manejo de Denuncias" 
-                             class="w-20 h-20 opacity-80">
+                        
                     </div>
                 </div>
                 
@@ -493,9 +477,7 @@
                     <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">
                         <div class="xl:col-span-3">
                             <div class="flex items-center mb-6">
-                                <img src="/placeholder.svg?height=60&width=60" 
-                                     alt="Proceso de Investigación" 
-                                     class="w-16 h-16 rounded-xl mr-4 border-2 border-amber-400/30">
+                                
                                 <h3 class="text-xl font-semibold text-gray-900">Proceso de Investigación</h3>
                             </div>
                             
@@ -562,9 +544,7 @@
 
                         <div class="space-y-6">
                             <div class="text-center">
-                                <img src="/placeholder.svg?height=80&width=80" 
-                                     alt="Niveles de Prioridad" 
-                                     class="w-20 h-20 mx-auto rounded-2xl border-2 border-amber-400/30 mb-4">
+                                
                             </div>
 
                             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200">
@@ -642,9 +622,7 @@
                             </h2>
                             <p class="text-gray-300 mt-2">Escalamiento progresivo y medidas disciplinarias</p>
                         </div>
-                        <img src="/placeholder.svg?height=80&width=80" 
-                             alt="Sistema de Sanciones" 
-                             class="w-20 h-20 opacity-80">
+                        
                     </div>
                 </div>
                 
@@ -652,9 +630,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
                             <div class="flex items-center mb-6">
-                                <img src="/placeholder.svg?height=60&width=60" 
-                                     alt="Escalamiento de Sanciones" 
-                                     class="w-16 h-16 rounded-xl mr-4 border-2 border-amber-400/30">
+                                
                                 <h3 class="text-xl font-semibold text-gray-900">Escalamiento de Sanciones</h3>
                             </div>
                             
@@ -707,9 +683,7 @@
 
                         <div>
                             <div class="flex items-center mb-6">
-                                <img src="/placeholder.svg?height=60&width=60" 
-                                     alt="Consideraciones Especiales" 
-                                     class="w-16 h-16 rounded-xl mr-4 border-2 border-amber-400/30">
+                                
                                 <h3 class="text-xl font-semibold text-gray-900">Consideraciones Especiales</h3>
                             </div>
                             
@@ -787,9 +761,7 @@
         <!-- Footer de Contacto -->
         <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-3xl p-8 text-white text-center shadow-2xl border border-amber-400/20">
             <div class="flex items-center justify-center mb-6">
-                <img src="/placeholder.svg?height=80&width=80" 
-                     alt="Soporte y Ayuda" 
-                     class="w-20 h-20 rounded-2xl border-2 border-amber-400/30 mr-4">
+                
                 <div class="text-left">
                     <h3 class="text-2xl font-serif mb-2">¿Necesitas Ayuda Adicional?</h3>
                     <p class="text-gray-300">
