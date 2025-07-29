@@ -12,9 +12,10 @@ use App\Models\Resena;
 
 class PropiedadController extends Controller
 {   
-    
+    //prueba
     public function ListarPropiedad()
     {
+        
         $usuarioId = session('usuario_id');
         $propiedades = Propiedad::where('estado','=','disponible')->where('aprobada','=','aprobado')->where('usuario_id', '!=', $usuarioId)->get(); 
         foreach ($propiedades as $propiedad) {

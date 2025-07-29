@@ -161,7 +161,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Precio -->
+                        <!-- Precio xd -->
                         <div class="group">
                             <label for="precio_dia" class="block text-sm font-bold text-black mb-2">
                                 <svg class="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
