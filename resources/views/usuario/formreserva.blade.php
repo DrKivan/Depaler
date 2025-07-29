@@ -245,7 +245,7 @@
                             <div class="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
                                 <div class="flex items-start space-x-4">
                                     <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden flex-shrink-0 shadow-sm">
-                                        <img src="{{ asset('fotos_perfil/default.png') }}" alt="Usuario" class="w-full h-full object-cover">
+                                        <img src="{{ asset('/' . ($resena->usuario->foto_perfil ?? 'default.png')) }}" alt="Usuario" class="w-full h-full object-cover">
                                     </div>
                                     <div class="flex-1">
                                         <div class="flex items-center justify-between mb-2">
