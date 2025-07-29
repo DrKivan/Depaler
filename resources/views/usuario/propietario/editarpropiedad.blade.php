@@ -299,6 +299,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- WiFi -->
                         <label class="group cursor-pointer">
+                            <input type="hidden" name="wifi" value="0">
                             <input type="checkbox" 
                                    name="wifi" 
                                    value="1" 
@@ -317,6 +318,7 @@
 
                         <!-- Televisión -->
                         <label class="group cursor-pointer">
+                            <input type="hidden" name="television" value="0">
                             <input type="checkbox" 
                                    name="television" 
                                    value="1" 
@@ -335,6 +337,7 @@
 
                         <!-- Aire Acondicionado -->
                         <label class="group cursor-pointer">
+                            <input type="hidden" name="aire_acondicionado" value="0">
                             <input type="checkbox" 
                                    name="aire_acondicionado" 
                                    value="1" 
@@ -353,6 +356,7 @@
 
                         <!-- Servicios Básicos -->
                         <label class="group cursor-pointer">
+                            <input type="hidden" name="servicios_basicos" value="0">
                             <input type="checkbox" 
                                    name="servicios_basicos" 
                                    value="1" 

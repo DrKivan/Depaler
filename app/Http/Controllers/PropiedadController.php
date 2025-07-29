@@ -15,7 +15,7 @@ class PropiedadController extends Controller
     //prueba
     public function ListarPropiedad()
     {
-        
+
         $usuarioId = session('usuario_id');
         $propiedades = Propiedad::where('estado','=','disponible')->where('aprobada','=','aprobado')->where('usuario_id', '!=', $usuarioId)->get(); 
         foreach ($propiedades as $propiedad) {
@@ -156,10 +156,10 @@ class PropiedadController extends Controller
         'estado' => 'required|string',
         'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         'ciudad' => 'required|string',
-        'wifi' => 'required|in:0,1',
-        'television' => 'required|in:0,1',
-        'aire_acondicionado' => 'required|in:0,1',
-        'servicios_basicos' => 'required|in:0,1',
+        'wifi' => 'in:0,1',
+        'television' => 'in:0,1',
+        'aire_acondicionado' => 'in:0,1',
+        'servicios_basicos' => 'in:0,1',
     ]);
 
     $propiedad = Propiedad::findOrFail($id);
